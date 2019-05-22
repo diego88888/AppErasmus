@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     EditText etEmail, etContraseña;
-    private Button btnLogin;
+    Button btnLogin;
     private DrawerLayout drawer;
     //FIREBASE
     public FirebaseDatabase firebaseDatabase;

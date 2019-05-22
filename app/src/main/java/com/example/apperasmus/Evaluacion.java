@@ -3,16 +3,18 @@ package com.example.apperasmus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 public class Evaluacion implements Parcelable {
     String id;
-    String pregunta;
+    List<String> pregunta;
     boolean resultado;
 
     public Evaluacion(){
 
     }
 
-    public Evaluacion(String id, String pregunta, boolean resultado){
+    public Evaluacion(String id, List<String> pregunta, boolean resultado){
         this.id = id;
         this.pregunta = pregunta;
         this.resultado = resultado;
@@ -20,7 +22,7 @@ public class Evaluacion implements Parcelable {
 
     protected Evaluacion (Parcel in){
         id = in.readString();
-        pregunta = in.readString();
+        pregunta = in.createStringArrayList();
         resultado = in.readByte() != 0;
     }
 
@@ -40,7 +42,7 @@ public class Evaluacion implements Parcelable {
         return id;
     }
 
-    public String getPregunta() {
+    public List<String> getPregunta() {
         return pregunta;
     }
 
@@ -52,7 +54,7 @@ public class Evaluacion implements Parcelable {
         this.id = id;
     }
 
-    public void setPregunta(String pregunta) {
+    public void setPregunta(List<String> pregunta) {
         this.pregunta = pregunta;
     }
 
@@ -68,7 +70,7 @@ public class Evaluacion implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-        dest.writeString(pregunta);
+        dest.writeStringList(pregunta);
         dest.writeByte((byte) (resultado ? 1 : 0));
     }
 
