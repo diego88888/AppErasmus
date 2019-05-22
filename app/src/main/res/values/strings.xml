@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppErasmus</string>
+    <string name="etEmail">Email</string>
+    <string name="etContraseña">Contraseña</string>
+    <string name="botonLogin">Login</string>
+    <string name="botonRegistro">Registro</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="toastMain">No se ha podido conectar. Revisa tus credenciales</string>
+    <string name="validacionMain">Rellene los campos</string>
+</resources>

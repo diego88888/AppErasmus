@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "981863020001",
+    "firebase_url": "https://apperasmus-4435c.firebaseio.com",
+    "project_id": "apperasmus-4435c",
+    "storage_bucket": "apperasmus-4435c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981863020001:android:e471458eb60d32f8",
+        "android_client_info": {
+          "package_name": "com.example.apperasmus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981863020001-j5h633fgbbo2eskjetncinrumvjmpir1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apperasmus",
+            "certificate_hash": "2f592873705f2bb0489ba9257d1b0e88c77080a5"
+          }
+        },
+        {
+          "client_id": "981863020001-idfj19jfe6g0n9ee84bbn2d2t7d8e6mq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwf-G4HG6T-fY-2LIW-lBNKnPdzUJYdig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981863020001-idfj19jfe6g0n9ee84bbn2d2t7d8e6mq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
