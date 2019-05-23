@@ -40,23 +40,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         //Firebase
         mAuth = FirebaseAuth.getInstance();
 
         etEmail = (EditText) findViewById(R.id.etEmail);
         etContraseña = (EditText) findViewById(R.id.etContraseña);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        btnLogin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(), prueba.class);
-                startActivity(i);
-            }
-        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         //Firebase
-        /*btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = etEmail.getText().toString();
@@ -83,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     loginFirebase(email, contraseña);
                 }
             }
-        });*/
+        });
     }
 
     @Override
