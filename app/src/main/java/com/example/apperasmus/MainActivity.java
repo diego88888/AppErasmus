@@ -2,17 +2,10 @@ package com.example.apperasmus;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,10 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity{
     EditText etEmail, etContraseña;
     Button btnLogin;
-    private DrawerLayout drawer;
     //FIREBASE
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
@@ -50,18 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         etContraseña = (EditText) findViewById(R.id.etContraseña);
         btnLogin = (Button) findViewById(R.id.btnLogin);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
         //Firebase
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,37 +58,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.nav_chat:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatFragment()).commit();
-                break;
-            case R.id.nav_alumno:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AlumnosFragment()).commit();
-                break;
-            case R.id.nav_nuevoAlumno:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NuevoAlumnoFragment()).commit();
-                break;
-            case R.id.nav_evaluacion:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EvaluacionFragment()).commit();
-                break;
-            case R.id.nav_salir:
-
-                break;
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
     //Firebase
     @Override
     public void onStart() {
@@ -117,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
 
-            Intent i=new Intent(getApplicationContext(), prueba.class);
+            Intent i=new Intent(getApplicationContext(), Inicio.class);
             startActivity(i);
         }
     }
@@ -153,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UsuarioTutor u = dataSnapshot.getValue(UsuarioTutor.class);
-                Intent i=new Intent(getApplicationContext(), prueba.class);
+                Intent i=new Intent(getApplicationContext(), Inicio.class);
                 i.putExtra("USUARIOTUTOR",u);
                 startActivity(i);
 
@@ -165,8 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         databaseReference.addValueEventListener(valueEventListener);
-
-
     }
 
 }
