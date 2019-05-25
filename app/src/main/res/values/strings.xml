@@ -8,4 +8,24 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="toastMain">No se ha podido conectar. Revisa tus credenciales</string>
     <string name="validacionMain">Rellene los campos</string>
+    <string name="etDni">DNI del alumno:</string>
+    <string name="etEstudios">Estudios cursados por el alumno:</string>
+    <string name="etNombreAlumno">Nombre del alumno:</string>
+    <string name="etPracticas">Periodo de practicas del alumno:</string>
+    <string name="etNumHoras">Numero de horas de practicas que realizara el alumno:</string>
+    <string name="etEmailInsti">Email del instituto del alumno:</string>
+    <string name="etNombreInsti">Nombre del instituto del alumno:</string>
+    <string name="etTutorInsti">Nombre del tutor del alumno en el instituto:</string>
+    <string name="etNombreEmpresa">Nombre de la empresa de las practicas:</string>
+    <string name="etTutorEmpresa">Nombre del tutor del alumno en la empresa de practicas:</string>
+    <string name="etEmailAlumno">Email para uso de la app del alumno:</string>
+    <string name="etPaswAlumno">Contraseña que usara el alumno en la app:</string>
+    <string name="etPaswAlumno2">Repita la contraseña para confirmar:</string>
+    <string name="etDatos1"><b>Introduzca a continuacion los datos del alumno en practicas</b>\n</string>
+    <string name="etDatos2"><b>Introduzca a continuacion los datos del instituto del alumno en practicas\n</b></string>
+    <string name="etDatos3"><b>Introduzca a continuacion los datos de la empresa\n</b></string>
+    <string name="etDatos4"><b>Introduzca a continuacion los datos de login del alumno en practicas para uso de la app\n</b></string>
+    <string name="vacio"> </string>
+    <string name="botonCancelar">Cancelar</string>
+    <string name="botonCrear">Crear</string>
 </resources>
