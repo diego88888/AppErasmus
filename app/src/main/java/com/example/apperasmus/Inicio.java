@@ -46,7 +46,8 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AlumnosFragment()).commit();
                 break;
             case R.id.nav_nuevoAlumno:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NuevoAlumnoFragment()).commit();
+                Intent i = new Intent(getApplicationContext(), NuevoAlumno.class);
+                startActivity(i);
                 break;
             case R.id.nav_evaluacion:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EvaluacionFragment()).commit();
@@ -62,7 +63,6 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {

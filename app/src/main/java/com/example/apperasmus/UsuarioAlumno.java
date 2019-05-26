@@ -183,8 +183,8 @@ public class UsuarioAlumno implements Parcelable {
         dest.writeString(nombreInsti);
         dest.writeString(password);
         dest.writeString(periodoPracticas);
+        dest.writeInt(totalHoras);
         dest.writeString(tutorEmpresa);
         dest.writeString(tutorInsti);
-        dest.writeInt(totalHoras);
     }
 }
