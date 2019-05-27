@@ -28,4 +28,9 @@
     <string name="vacio"> </string>
     <string name="botonCancelar">Cancelar</string>
     <string name="botonCrear">Crear</string>
+    <string name="botonModificar">Modificar</string>
+    <string name="parentesis1">(</string>
+    <string name="parentesis2">)</string>
+    <string name="barraLat">/</string>
+    <!--STRINGS PREGUNTAS EVALUACION-->
 </resources>

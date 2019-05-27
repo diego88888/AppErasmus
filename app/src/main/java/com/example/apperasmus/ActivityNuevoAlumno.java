@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.Executor;
 
-public class NuevoAlumno extends AppCompatActivity {
+public class ActivityNuevoAlumno extends AppCompatActivity {
     Button botonCancelar, botonCrear;
     EditText etDniAlumno, etNombreAlumno, etEstudiosAlumno, etPeriPracticas, etNumHoras, etNombreInsti,
             etEmailInsti, etTutorInsti, etNombreEpresa, etTutorEmpresa, etEmailAlumno, etPasswAlumno1,
@@ -81,6 +81,7 @@ public class NuevoAlumno extends AppCompatActivity {
                     uA = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, "", nombre,
                             nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
                     CrearUsuarioAuth(email, password);
+                    ponerVacio();
                 }
             }
         });

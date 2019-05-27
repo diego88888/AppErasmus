@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NuevoAlumno"></activity>
+        <activity android:name=".ActivityAlumnos" />
+        <activity android:name=".ActivityChat" />
+        <activity android:name=".ActivityEvaluacion" />
+        <activity android:name=".ActivityNuevoAlumno" />
         <activity
             android:name=".Inicio"
             android:theme="@style/AppTheme.NoActionBar" />

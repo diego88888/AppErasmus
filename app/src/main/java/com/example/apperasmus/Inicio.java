@@ -10,18 +10,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Inicio extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //DRAWER
     private DrawerLayout drawer;
     //FIREABSE
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -29,6 +36,7 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        updateHeader();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -40,17 +48,17 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_chat:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChatFragment()).commit();
+
                 break;
             case R.id.nav_alumno:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AlumnosFragment()).commit();
+
                 break;
             case R.id.nav_nuevoAlumno:
-                Intent i = new Intent(getApplicationContext(), NuevoAlumno.class);
+                Intent i = new Intent(getApplicationContext(), ActivityNuevoAlumno.class);
                 startActivity(i);
                 break;
             case R.id.nav_evaluacion:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EvaluacionFragment()).commit();
+
                 break;
             case R.id.nav_salir:
                 mAuth.getInstance().signOut();
@@ -70,5 +78,14 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void updateHeader(){
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+
+        TextView navEmail = headerView.findViewById(R.id.emailCurrentUser);
+
+        navEmail.setText(currentUser.getEmail());
     }
 }
