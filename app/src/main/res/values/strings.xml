@@ -25,6 +25,10 @@
     <string name="etDatos2"><b>Introduzca a continuacion los datos del instituto del alumno en practicas\n</b></string>
     <string name="etDatos3"><b>Introduzca a continuacion los datos de la empresa\n</b></string>
     <string name="etDatos4"><b>Introduzca a continuacion los datos de login del alumno en practicas para uso de la app\n</b></string>
+    <string name="etDatos1_1"><b>Datos del alumno en practicas:</b>\n</string>
+    <string name="etDatos2_1"><b>Datos del instituto del alumno en practicas:\n</b></string>
+    <string name="etDatos3_1"><b>Datos de la empresa:\n</b></string>
+    <string name="etDatos4_1"><b>Datos de login del alumno en practicas para uso de la app\n</b></string>
     <string name="vacio"> </string>
     <string name="botonCancelar">Cancelar</string>
     <string name="botonCrear">Crear</string>
@@ -32,5 +36,6 @@
     <string name="parentesis1">(</string>
     <string name="parentesis2">)</string>
     <string name="barraLat">/</string>
+    <string name="inicioSesion">Sesion iniciada como:</string>
     <!--STRINGS PREGUNTAS EVALUACION-->
 </resources>

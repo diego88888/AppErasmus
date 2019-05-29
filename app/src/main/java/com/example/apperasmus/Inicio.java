@@ -51,7 +51,8 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
 
                 break;
             case R.id.nav_alumno:
-
+                Intent i2 = new Intent(getApplicationContext(), ActivityAlumnos.class);
+                startActivity(i2);
                 break;
             case R.id.nav_nuevoAlumno:
                 Intent i = new Intent(getApplicationContext(), ActivityNuevoAlumno.class);

@@ -18,6 +18,10 @@ public class UsuarioAlumno implements Parcelable {
     String tutorEmpresa;
     String tutorInsti;
 
+    public UsuarioAlumno(){
+
+    }
+
     public UsuarioAlumno(String dni, String emailInsti, String email, String empresa, String estudios, String id, String nombre, String nombreInsti, String password, String periodoPracticas, int totalHoras, String tutorEmpresa, String tutorInsti) {
         this.dni = dni;
         this.emailInsti = emailInsti;
