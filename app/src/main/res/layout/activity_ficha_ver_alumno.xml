@@ -22,48 +22,58 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textStyle="italic"
                 android:text="@string/etDni"/>
 
             <TextView
                 android:id="@+id/tvDniAlumno2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etNombreAlumno"/>
             <TextView
                 android:id="@+id/tvNombreAlumno2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etEstudios"/>
             <TextView
                 android:id="@+id/tvEstudiosAlumno2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etPracticas"/>
             <TextView
                 android:id="@+id/tvPeriPracticas2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etNumHoras"/>
             <TextView
                 android:id="@+id/tvNumHoras2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
 
             <!--DATOS DEL INSTITUTO-->
@@ -75,29 +85,35 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etNombreInsti"/>
             <TextView
                 android:id="@+id/tvNombreInsti2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etEmailInsti"/>
             <TextView
                 android:id="@+id/tvEmailInsti2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etTutorInsti"/>
             <TextView
                 android:id="@+id/tvTutorInsti2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <!--DATOS DE LA EMPRESA-->
             <TextView
@@ -108,20 +124,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etNombreEmpresa"/>
             <TextView
                 android:id="@+id/tvNombreEpresa2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etTutorEmpresa"/>
             <TextView
                 android:id="@+id/tvTutorEmpresa2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <!--DATOS DEL LOGIN-->
             <TextView
@@ -132,20 +152,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etEmailAlumno"/>
             <TextView
                 android:id="@+id/tvEmailAlumno2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="@string/etPaswAlumno"/>
             <TextView
                 android:id="@+id/tvPasswAlumno1_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 />
 
             <Button

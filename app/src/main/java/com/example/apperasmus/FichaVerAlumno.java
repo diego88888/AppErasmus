@@ -42,7 +42,7 @@ public class FichaVerAlumno extends AppCompatActivity {
             tvNombreInsti.setText(uA.getNombreInsti());
             tvEmailInsti.setText(uA.getEmailInsti());
             tvTutorInsti.setText(uA.getTutorInsti());
-            tvNombreEmpresa.setText(uA.getTutorEmpresa());
+            tvNombreEmpresa.setText(uA.getEmpresa());
             tvTutorEmpresa.setText(uA.getTutorEmpresa());
             tvEmailLogin.setText(uA.getEmail());
             tvPasswAlumno.setText(uA.getPassword());
@@ -53,6 +53,7 @@ public class FichaVerAlumno extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), ActivityNuevoAlumno.class);
                     intent.putExtra("USUARIOALUMNO",uA);
                     startActivity(intent);
+                    finish();
                 }
             });
 

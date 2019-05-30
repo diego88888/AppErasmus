@@ -28,6 +28,8 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
     UsuarioAlumno uA;
+    UsuarioAlumno uA_modificar;
+    boolean esModificar = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,30 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         etPasswAlumno2 = (EditText) findViewById(R.id.etPasswAlumno2);
         etNumHoras = (EditText) findViewById(R.id.etNumHoras);
         mAuth = FirebaseAuth.getInstance();
+        Bundle b = getIntent().getExtras();
+
+        if (b != null){
+            esModificar = true;
+            botonCrear.setText(R.string.botonModificar);
+            uA = b.getParcelable("USUARIOALUMNO");
+            etDniAlumno.setText(uA.getDni());
+            etNombreAlumno.setText(uA.getNombre());
+            etEstudiosAlumno.setText(uA.getEstudios());
+            etPeriPracticas.setText(uA.getPeriodoPracticas());
+            etNumHoras.setText("".concat(Integer.toString(uA.getTotalHoras())));
+            etNombreInsti.setText(uA.getNombreInsti());
+            etEmailInsti.setText(uA.getEmailInsti());
+            etTutorInsti.setText(uA.getTutorInsti());
+            etNombreEpresa.setText(uA.getEmpresa());
+            etTutorEmpresa.setText(uA.getTutorEmpresa());
+            etEmailAlumno.setText(uA.getEmail());
+            etPasswAlumno1.setText(uA.getPassword());
+            etPasswAlumno2.setText(uA.getPassword());
+
+        }else{
+            botonCrear.setText(R.string.botonCrear);
+            esModificar = false;
+        }
 
         botonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +104,19 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
                 if (!password.equals(password2)){
                     Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT);
                 }else{
-                    uA = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, "", nombre,
-                            nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
-                    CrearUsuarioAuth(email, password);
-                    ponerVacio();
+                    if(esModificar){
+                        uA_modificar = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, uA.getId(), nombre,
+                                nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
+                        ModificarAlumnoDatabase();
+                        finish();
+                    }else{
+                        uA = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, "", nombre,
+                                nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
+                        CrearUsuarioAuth(email, password);
+                        finish();
+                    }
                 }
+
             }
         });
     }
@@ -129,6 +163,36 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Usuario Creado",
                 Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void ModificarAlumnoDatabase(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("usuarioAlumno");
+        databaseReference.child(uA.getId()).setValue(uA_modificar);
+        String newPassword = etPasswAlumno1.getText().toString();
+        if(!uA.getPassword().equals(uA_modificar.getPassword())){
+            ModificarAlumnoAuth();
+        }
+        Toast.makeText(getApplicationContext(), "Modificado",
+                Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void ModificarAlumnoAuth(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String newPassword = uA_modificar.getPassword();
+
+        user.updatePassword(newPassword)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(getApplicationContext(), "Cambiado",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override
