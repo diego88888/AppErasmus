@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="preguntas4">
+        <!--PARTE 4-->
+        <item name="enunciado4">Participa en el diseño, la puesta en marcha y el mantenimiento de instalaciones con servicios de red local e internet, documentando la intervencion realizada.</item> 
+
+        <item name="pregunta13">Se adecuo el plan de trabajo a las normas establecidas.</item> 
+        <item name="pregunta14">Se realizo la instalacion o configurazion del sistema operativo.</item> 
+        <item name="pregunta15">Se desarrollaron tareas de automatizacion del sistema.</item> 
+        <item name="pregunta16">Se comprobo la funcionalidad del sistema segun los requisitos establecidos.</item> 
+        <item name="pregunta17">Se interpreto la documentacion tecnica de la instalacion.</item> 
+        <item name="pregunta18">Se realizaron copias de seguridad de los datos segun el plan de seguridad establecido.</item>
+
+    </string-array>
+</resources>

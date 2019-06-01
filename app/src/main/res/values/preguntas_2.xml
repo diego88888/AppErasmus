@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="preguntas2">
+        <!--PARTE 2-->
+        <item name="enunciado2">Muestra habitos eticos y laborales en el desarrollo de su actividad profesional, de acuerdo con las caracterisitcas del puesto de trabajo y con los procedimientos.</item> 
+
+        <item name="pregunta6">Se han identificado las normas de prevencion de riesgos laborales y los aspectos fundamentales de la ley de prevencion de riesgos laborales de aplicacion en la actividad profesional.</item> 
+        <item name="pregunta7">Se han puesto en marcha los equipos de proteccion individual segun los riesgos de la actividad profesional y las normas de la empresa.</item> 
+        <item name="pregunta8">Se ha mantenido una actitud de respeto por el medio ambiente en las actividades desarrolladas.</item> 
+        <item name="pregunta9">Se han mantenido organizados, limpios y libres de obstaculos el puesto de trabajo y el area correspondiente al desarrollo de la actividad.</item> 
+        <item name="pregunta10">Se han responsabilizado del trabajo asignado interpretando y cumpliendo las instrucciones recibidas.</item> 
+        <item name="pregunta11">Se ha establecido una comunicacion eficaz con la persona responsable en cada situacion y con los miembros del equipo.</item>
+
+    </string-array>
+</resources>

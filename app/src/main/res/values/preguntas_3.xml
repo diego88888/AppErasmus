@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="preguntas3">
+        <!--PARTE 3-->
+        <item name="enunciado3">Elabora y tramita todos los tipos de documentos relacionados con las areas administrativas de la empresa empleando medios, equipos e instrumentos de control, segun los procedimientos de la empresa y del sector.</item> 
+
+        <item name="pregunta12">Se han detectado las necesidades de comunicacion de cada proceso de trabajo.</item>
+
+    </string-array>
+</resources>

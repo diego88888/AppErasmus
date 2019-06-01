@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="preguntas5">
+        <!--PARTE 5-->
+        <item name="enunciado6">Asiste a los usuarios resolviendo problemas de la expresion del sistema, segun las normas y tiempos.</item> 
+
+        <item name="pregunta19">Se identificaron las necesidades de los usuarios.</item> 
+        <item name="pregunta20">Se solucionaron las incidencias en los tiempos previstos.</item> 
+        <item name="pregunta21">Se documentaron las incidencias producidas durante la asistencia a los usuarios.</item> 
+        <item name="pregunta22">Se elaboraron manuales de instrucciones del servicio y mantenimiento de las instalaciones.</item> 
+
+    </string-array>
+</resources>
