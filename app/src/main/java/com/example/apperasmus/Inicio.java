@@ -52,6 +52,7 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
                 break;
             case R.id.nav_alumno:
                 Intent i2 = new Intent(getApplicationContext(), ActivityAlumnos.class);
+                i2.putExtra("VALIDAR",1); //1 --> Modificar alumno
                 startActivity(i2);
                 break;
             case R.id.nav_nuevoAlumno:
@@ -59,7 +60,9 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
                 startActivity(i);
                 break;
             case R.id.nav_evaluacion:
-
+                Intent i3 = new Intent(getApplicationContext(), ActivityAlumnos.class);
+                i3.putExtra("VALIDAR",2); //2--> Evaluar alumno
+                startActivity(i3);
                 break;
             case R.id.nav_salir:
                 mAuth.getInstance().signOut();

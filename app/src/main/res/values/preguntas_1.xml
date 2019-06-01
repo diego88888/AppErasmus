@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="preguntas1">
+        <!--PARTE 1-->
+        <item name="enunciado1">Identifica la estructura y la organizacion de la empresa, teniendo en cuenta su relacion con la produccion y la comercializacion de los productos que obtiene.</item>
+
+        <item name="pregunta1">Se ha identificado la estructura organizativa de la empresa y las funciones de cada area.</item> 
+        <item name="pregunta2">Se ha comprobado la estructura de la empresa con las organizaciones empresariales tipo existentes en el sector.</item> 
+        <item name="pregunta3">Se han identificado los elementos que constituyen la red logistica de la empresa: proveedores, clientela, sistemas de produccion y almacenaje etc.</item> 
+        <item name="pregunta4">Se han identificado los procedimientos de trabajo en el desarrollo de la presentacion de servicio.</item> 
+        <item name="pregunta5">Se han valorado las competencias necesarias de los recursos humanos para el desarrollo optimo de la actividad.</item> 
+
+    </string-array>
+</resources>

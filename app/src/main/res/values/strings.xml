@@ -37,5 +37,11 @@
     <string name="parentesis2">)</string>
     <string name="barraLat">/</string>
     <string name="inicioSesion">Sesion iniciada como:</string>
+    <string name="etPaginas">Numero de paginas restantes para acabar de evaluar</string>
+    <string name="botonAtras">Atras</string>
+    <string name="botonSiguiente">Siguiente</string>
+    <string name="botonFinalizar">Finalizar</string>
     <!--STRINGS PREGUNTAS EVALUACION-->
+
+
 </resources>

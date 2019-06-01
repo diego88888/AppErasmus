@@ -8,10 +8,210 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="0dp">
+
         <TextView
+            android:id="@+id/etPaginas"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/etPaginas"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/parentesis1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etPaginas"
+            android:layout_marginTop="15dp"
+            android:text="@string/parentesis1"
+            android:layout_marginLeft="185dp"
+            android:layout_marginStart="185dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/contador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etPaginas"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/parentesis1"
+            android:layout_toRightOf="@+id/parentesis1"
+            android:text="1"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/barra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etPaginas"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/contador"
+            android:layout_toRightOf="@+id/contador"
+            android:text="@string/barraLat"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/etNumPag2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etPaginas"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/barra"
+            android:layout_toRightOf="@+id/barra"
+            android:text="5"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/parentesis2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etPaginas"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/etNumPag2"
+            android:layout_toRightOf="@+id/etNumPag2"
+            android:text="@string/parentesis2"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/enunciado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/barra"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+             android:textStyle="italic"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/enunciado"
+            android:layout_marginTop="45dp"
+            android:stretchColumns="0">
+
+            <TableRow
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/pregunta1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                   android:textSize="17sp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/pregunta2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/pregunta3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/pregunta4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/pregunta5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBox5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
+            <TableRow
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/pregunta6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/checkBox6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center" />
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/boton1"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/botonAtras"/>
+        <Button
+            android:id="@+id/boton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/boton1"
+            android:layout_toEndOf="@+id/boton1"
+            android:text="@string/botonSiguiente"/>
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

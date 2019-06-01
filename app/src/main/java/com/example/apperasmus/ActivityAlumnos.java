@@ -1,10 +1,12 @@
 package com.example.apperasmus;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +27,7 @@ public class ActivityAlumnos extends AppCompatActivity {
     public ValueEventListener valueEventListener;
     public UsuarioAlumno user;
     public FirebaseAuth mAuth;
+    public int tipoAccion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,8 @@ public class ActivityAlumnos extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if(b!=null){
-            user =  b.getParcelable("USUARIOALUMNO");
+          //  user =  b.getParcelable("USUARIOALUMNO");
+            tipoAccion = b.getInt("VALIDAR");
         }
         cargarAlumnosFireBase();
     }
@@ -81,7 +85,31 @@ public class ActivityAlumnos extends AppCompatActivity {
 
         AdaptadorAlumno adapter = new AdaptadorAlumno(alumnos, getApplicationContext());
 
+
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tipoAccion == 2){
+                        Intent i = new Intent(getApplicationContext(), ActivityEvaluacion.class);
+                    getApplicationContext().startActivity(i);
+                }else if(tipoAccion == 1){
+                    Intent i = new Intent(getApplicationContext(), FichaVerAlumno.class);
+                    user = obtenerAlumno(rvAlumnos.getChildAdapterPosition(v));
+
+                    i.putExtra("USUARIOALUMNO",user);
+                    getApplicationContext().startActivity(i);
+                }else if(tipoAccion == 3){
+
+                }
+
+            }
+        });
+
         rvAlumnos.setAdapter(adapter);
 
+    }
+
+    private UsuarioAlumno obtenerAlumno(int position){
+        return alumnos.get(position);
     }
 }

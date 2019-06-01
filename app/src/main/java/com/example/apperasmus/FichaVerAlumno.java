@@ -56,7 +56,6 @@ public class FichaVerAlumno extends AppCompatActivity {
                     finish();
                 }
             });
-
         }
     }
 }
