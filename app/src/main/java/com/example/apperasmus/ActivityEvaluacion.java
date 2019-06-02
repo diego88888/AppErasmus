@@ -29,6 +29,7 @@ public class ActivityEvaluacion extends AppCompatActivity {
     ScrollView scroll;
     int contador = 1;
     int contadorRespuestas;
+    Evaluacion eval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class ActivityEvaluacion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 comprobarChecksBoxs(contadorRespuestas);
+                actualizarEvaluacion();
                 preguntas.clear();
                 if (botonSiguiente.getText().equals("Siguiente")){
                     desmarcarCheckBox();
@@ -83,7 +85,6 @@ public class ActivityEvaluacion extends AppCompatActivity {
 
                 }else{
                     //firebase
-
                 }
 
             }
@@ -173,13 +174,9 @@ public class ActivityEvaluacion extends AppCompatActivity {
     private void comprobarChecksBoxs(int contadorRespuestas){
         for (int i = 0; i < contadorRespuestas; i++){
             if (array_cb[i].isChecked()){
-                for (int x = 0; x < preguntas.size();x++){
-                    preguntas.get(x).setRespuesta(true);
-                }
+                preguntas.get(i).setRespuesta(true);
             }else{
-                for (int x = 0; x < preguntas.size();x++){
-                    preguntas.get(x).setRespuesta(false);
-                }
+                preguntas.get(i).setRespuesta(false);
             }
         }
     }
@@ -189,4 +186,11 @@ public class ActivityEvaluacion extends AppCompatActivity {
 
         }
     }
+
+    private void actualizarEvaluacion(){
+        for(int i = 0; i < preguntas.size(); i++){
+            eval.preguntas.add(preguntas.get(i).getTexto());
+        }
+    }
+
 }

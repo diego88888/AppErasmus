@@ -3,27 +3,28 @@ package com.example.apperasmus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Evaluacion implements Parcelable {
     String id;
-    List<String> pregunta;
-    boolean resultado;
+    List<String> preguntas;
+    List<String> resultados;
 
     public Evaluacion(){
 
     }
 
-    public Evaluacion(String id, List<String> pregunta, boolean resultado){
+    public Evaluacion(String id, List<String> pregunta, List<String> resultado){
         this.id = id;
-        this.pregunta = pregunta;
-        this.resultado = resultado;
+        this.preguntas = pregunta;
+        this.resultados = resultado;
     }
 
     protected Evaluacion (Parcel in){
         id = in.readString();
-        pregunta = in.createStringArrayList();
-        resultado = in.readByte() != 0;
+        preguntas = in.createStringArrayList();
+        resultados = in.createStringArrayList();;
     }
 
     public static final Creator<Evaluacion> CREATOR = new Creator<Evaluacion>() {
@@ -42,24 +43,24 @@ public class Evaluacion implements Parcelable {
         return id;
     }
 
-    public List<String> getPregunta() {
-        return pregunta;
+    public List<String> getPreguntas() {
+        return preguntas;
     }
 
-    public boolean isResultado() {
-        return resultado;
+    public List<String> getResultados() {
+        return resultados;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setPregunta(List<String> pregunta) {
-        this.pregunta = pregunta;
+    public void setPreguntas(List<String> pregunta) {
+        this.preguntas = pregunta;
     }
 
-    public void setResultado(boolean resultado) {
-        this.resultado = resultado;
+    public void setResultados(List<String> resultado) {
+        this.resultados = resultado;
     }
 
     @Override
@@ -70,8 +71,8 @@ public class Evaluacion implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-        dest.writeStringList(pregunta);
-        dest.writeByte((byte) (resultado ? 1 : 0));
+        dest.writeStringList(preguntas);
+        dest.writeStringList(resultados);
     }
 
 }

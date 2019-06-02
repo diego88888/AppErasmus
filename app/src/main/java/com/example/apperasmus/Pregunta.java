@@ -1,6 +1,6 @@
 package com.example.apperasmus;
 
-public class Pregunta {
+public class Pregunta{
     String texto;
     boolean respuesta;
 
