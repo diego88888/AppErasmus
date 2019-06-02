@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ScrollView;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +22,13 @@ public class ActivityEvaluacion extends AppCompatActivity {
     TextView pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, enunciado, etContador;
     TextView[] array_tv;
     Button botonAtras, botonSiguiente;
+    CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6;
+    CheckBox[] array_cb;
+    TableRow row1, row2, row3, row4, row5, row6;
+    TableRow[] array_tr;
+    ScrollView scroll;
     int contador = 1;
+    int contadorRespuestas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,23 @@ public class ActivityEvaluacion extends AppCompatActivity {
         pregunta6 = (TextView) findViewById(R.id.pregunta6);
         array_tv = new TextView[]{enunciado, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6};
 
+        checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
+        checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+        checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+        checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+        checkBox5 = (CheckBox) findViewById(R.id.checkBox5);
+        checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
+        array_cb = new CheckBox[]{checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6};
+
+        row1 = (TableRow) findViewById(R.id.row1);
+        row2 = (TableRow) findViewById(R.id.row2);
+        row3 = (TableRow) findViewById(R.id.row3);
+        row4 = (TableRow) findViewById(R.id.row4);
+        row5 = (TableRow) findViewById(R.id.row5);
+        row6 = (TableRow) findViewById(R.id.row6);
+        array_tr = new TableRow[]{row1, row2, row3, row4, row5, row6};
+
+        scroll = (ScrollView) findViewById(R.id.scroll);
 
         etContador = (TextView) findViewById(R.id.contador);
 
@@ -44,18 +70,21 @@ public class ActivityEvaluacion extends AppCompatActivity {
         botonSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (botonSiguiente.getText().equals("Siguiente")) {
-
-                    if (contador < 5) {
-                        contador++;
-                        cargarPreguntas();
-                    } else {
+                comprobarChecksBoxs(contadorRespuestas);
+                preguntas.clear();
+                if (botonSiguiente.getText().equals("Siguiente")){
+                    desmarcarCheckBox();
+                    rowsInvisible();
+                    contador++;
+                    cargarPreguntas();
+                    if(contador == 5){
                         botonSiguiente.setText(R.string.botonFinalizar);
                     }
-                } else {
+
+                }else{
+                    //firebase
 
                 }
-
 
             }
         });
@@ -63,43 +92,53 @@ public class ActivityEvaluacion extends AppCompatActivity {
         botonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                botonSiguiente.setText(R.string.botonSiguiente);
                 if (contador > 1) {
                     contador--;
                     cargarPreguntas();
                 } else {
                     Toast.makeText(ActivityEvaluacion.this, "Esta en la primera pagina", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
+
+
     }
 
 
     private void cargarPreguntas() {
         etContador.setText("" + contador);
 
-
         if (contador == 1) {
             String[] misPreguntas = getResources().getStringArray(R.array.preguntas1);
+            contadorRespuestas = (misPreguntas.length - 1);
+            cargarRows(misPreguntas.length);
             cargarDatos(misPreguntas);
-            recorrerArray();
+            imprimirPreguntas();
         } else if (contador == 2) {
             String[] misPreguntas = getResources().getStringArray(R.array.preguntas2);
+            contadorRespuestas = (misPreguntas.length - 1);
+            cargarRows(misPreguntas.length);
             cargarDatos(misPreguntas);
-            recorrerArray();
+            imprimirPreguntas();
         } else if (contador == 3) {
             String[] misPreguntas = getResources().getStringArray(R.array.preguntas3);
+            contadorRespuestas = (misPreguntas.length - 1);
+            cargarRows(misPreguntas.length);
             cargarDatos(misPreguntas);
-            recorrerArray();
+            imprimirPreguntas();
         } else if (contador == 4) {
             String[] misPreguntas = getResources().getStringArray(R.array.preguntas4);
+            contadorRespuestas = (misPreguntas.length - 1);
+            cargarRows(misPreguntas.length);
             cargarDatos(misPreguntas);
-            recorrerArray();
+            imprimirPreguntas();
         } else if (contador == 5) {
             String[] misPreguntas = getResources().getStringArray(R.array.preguntas5);
+            contadorRespuestas = (misPreguntas.length - 1);
+            cargarRows(misPreguntas.length);
             cargarDatos(misPreguntas);
-            recorrerArray();
+            imprimirPreguntas();
         }
     }
 
@@ -110,19 +149,44 @@ public class ActivityEvaluacion extends AppCompatActivity {
         }
     }
 
-    private void recorrerArray() {
-        enunciado.setText(this.preguntas.get(0).getTexto());
+    private void cargarRows(int enunciados){
+        for (int i = 0; i < (enunciados - 1); i++){
+            array_tr[i].setVisibility(View.VISIBLE);
+        }
+    }
 
+    private void rowsInvisible(){
+        for (int i = 0; i < array_tr.length; i++){
+            array_tr[i].setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void imprimirPreguntas() {
+        enunciado.setText(this.preguntas.get(0).getTexto());
 
         for (int i = 0; i < preguntas.size(); i++) {
 
             array_tv[i].setText(preguntas.get(i).getTexto());
 
+        }
+    }
+    private void comprobarChecksBoxs(int contadorRespuestas){
+        for (int i = 0; i < contadorRespuestas; i++){
+            if (array_cb[i].isChecked()){
+                for (int x = 0; x < preguntas.size();x++){
+                    preguntas.get(x).setRespuesta(true);
+                }
+            }else{
+                for (int x = 0; x < preguntas.size();x++){
+                    preguntas.get(x).setRespuesta(false);
+                }
+            }
+        }
+    }
+    private void desmarcarCheckBox(){
+        for (int i = 0; i < array_cb.length; i++){
+            array_cb[i].setChecked(false);
 
         }
-
-        preguntas.clear();
-
-
     }
 }
