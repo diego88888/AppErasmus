@@ -19,6 +19,7 @@ public class Pregunta {
 
     public boolean isRespuesta() {
         return respuesta;
+
     }
 
     public void setRespuesta(boolean respuesta) {
