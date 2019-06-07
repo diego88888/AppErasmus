@@ -39,7 +39,7 @@ public class ActivityAlumnos extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if(b!=null){
-          //  user =  b.getParcelable("USUARIOALUMNO");
+            //user =  b.getParcelable("USUARIOALUMNO");
             tipoAccion = b.getInt("VALIDAR");
         }
         cargarAlumnosFireBase();
@@ -90,12 +90,13 @@ public class ActivityAlumnos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(tipoAccion == 2){
-                        Intent i = new Intent(getApplicationContext(), ActivityEvaluacion.class);
+                    Intent i = new Intent(getApplicationContext(), ActivityEvaluacion.class);
+                    user = obtenerAlumno(rvAlumnos.getChildAdapterPosition(v));
+                    i.putExtra("USUARIOALUMNO",user);
                     getApplicationContext().startActivity(i);
                 }else if(tipoAccion == 1){
                     Intent i = new Intent(getApplicationContext(), FichaVerAlumno.class);
                     user = obtenerAlumno(rvAlumnos.getChildAdapterPosition(v));
-
                     i.putExtra("USUARIOALUMNO",user);
                     getApplicationContext().startActivity(i);
                 }else if(tipoAccion == 3){

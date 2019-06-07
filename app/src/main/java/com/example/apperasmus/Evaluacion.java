@@ -8,23 +8,24 @@ import java.util.List;
 
 public class Evaluacion implements Parcelable {
     String id;
-    List<String> preguntas;
-    List<String> resultados;
+    List<String> preguntas = new ArrayList<>();
+    List<String> resultados = new ArrayList<>();
+    String dniAlumno;
 
     public Evaluacion(){
 
     }
 
-    public Evaluacion(String id, List<String> pregunta, List<String> resultado){
+    public Evaluacion(String id, List<String> resultados, String dniAlumno){
         this.id = id;
-        this.preguntas = pregunta;
-        this.resultados = resultado;
+        this.resultados = resultados;
+        this.dniAlumno = dniAlumno;
     }
 
     protected Evaluacion (Parcel in){
         id = in.readString();
-        preguntas = in.createStringArrayList();
-        resultados = in.createStringArrayList();;
+        resultados = in.createStringArrayList();
+        dniAlumno = in.readString();
     }
 
     public static final Creator<Evaluacion> CREATOR = new Creator<Evaluacion>() {
@@ -62,6 +63,13 @@ public class Evaluacion implements Parcelable {
     public void setResultados(List<String> resultado) {
         this.resultados = resultado;
     }
+    public String getDniAlumno() {
+        return dniAlumno;
+    }
+
+    public void setDniAlumno(String dniAlumno) {
+        this.dniAlumno = dniAlumno;
+    }
 
     @Override
     public int describeContents() {
@@ -71,8 +79,20 @@ public class Evaluacion implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
-        dest.writeStringList(preguntas);
         dest.writeStringList(resultados);
+        dest.writeString(dniAlumno);
+    }
+
+    public void rellenarPreguntas(String pregunta){
+        preguntas.add(pregunta);
+    }
+
+    public void rellenarRespuestas(boolean respuesta){
+        if (respuesta){
+            resultados.add("Conseguido");
+        }else{
+            resultados.add("No conseguido");
+        }
     }
 
 }
