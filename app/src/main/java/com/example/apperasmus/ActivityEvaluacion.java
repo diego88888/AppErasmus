@@ -3,6 +3,7 @@ package com.example.apperasmus;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,11 +19,14 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class ActivityEvaluacion extends AppCompatActivity {
 
     List<Pregunta> preguntas = new ArrayList<>();
+    List<Pregunta> respuestas = new ArrayList<>();
     TextView pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, enunciado, etContador;
     TextView[] array_tv;
     Button botonAtras, botonSiguiente;
@@ -83,6 +87,8 @@ public class ActivityEvaluacion extends AppCompatActivity {
             botonSiguiente.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    scroll.fullScroll(ScrollView.FOCUS_UP);
                     comprobarChecksBoxs(contadorRespuestas);
                     guardarEvaluacion();
                     preguntas.clear();
@@ -98,7 +104,6 @@ public class ActivityEvaluacion extends AppCompatActivity {
                     } else {
                         eval.setDniAlumno(uA.getDni());
                         crearPDF();
-                        eval = new Evaluacion("", eval.resultados, eval.dniAlumno);
                         CrearEvaluacionDatabase();
                         finish();
                     }
@@ -111,12 +116,14 @@ public class ActivityEvaluacion extends AppCompatActivity {
                 public void onClick(View v) {
                     botonSiguiente.setText(R.string.botonSiguiente);
                     comprobarChecksBoxs(contadorRespuestas);
-                    guardarEvaluacion();
+
+               //     guardarEvaluacion();
                     preguntas.clear();
                     if (contador > 1) {
                         desmarcarCheckBox();
                         rowsInvisible();
                         contador--;
+                        borrarRespuesta();
                         cargarPreguntas();
                     } else {
                         Toast.makeText(ActivityEvaluacion.this, "Esta en la primera pagina", Toast.LENGTH_SHORT).show();
@@ -126,7 +133,38 @@ public class ActivityEvaluacion extends AppCompatActivity {
 
         }
     }
+    private void borrarRespuesta(){
+        int cont_aux = contador;
+        if (cont_aux == 1) {
+            for(int i = 4; i >= 0; i--){
+                eval.resultados.remove(i);
+                eval.preguntas.remove(i);
+            }
+        } else if (cont_aux == 2) {
+             for(int i = 10; i >= 5;i--){
+                 eval.resultados.remove(i);
+                 eval.preguntas.remove(i);
+             }
 
+
+        } else if (cont_aux == 3) {
+
+            eval.resultados.remove(11);
+            eval.preguntas.remove(11);
+
+        }else if (cont_aux == 4) {
+            for(int i = 17; i >= 12;i--) {
+                eval.resultados.remove(i);
+                eval.preguntas.remove(i);
+            }
+        }else if (cont_aux == 5) {
+                for (int i = 21; i >= 18; i--) {
+                    eval.resultados.remove(i);
+                    eval.preguntas.remove(i);
+                }
+            }
+
+    }
 
     private void cargarPreguntas() {
         etContador.setText("" + contador);
@@ -165,6 +203,7 @@ public class ActivityEvaluacion extends AppCompatActivity {
     }
 
     private void cargarDatos(String[] array) {
+
         for (int i = 0; i < array.length; i++) {
             Pregunta p = new Pregunta(array[i]);
             preguntas.add(p);
@@ -222,7 +261,10 @@ public class ActivityEvaluacion extends AppCompatActivity {
     private void CrearEvaluacionDatabase() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("evaluacion");
-        databaseReference.child(eval.getId()).setValue(eval);
+        String id_eval =  RandomString
+                .getAlphaNumericString(20);
+        eval.setId(id_eval);
+        databaseReference.child(id_eval).setValue(eval);
 
         Toast.makeText(getApplicationContext(), "evaluacion guardada",
                 Toast.LENGTH_SHORT).show();

@@ -48,7 +48,8 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_chat:
-
+                Intent i4 = new Intent(getApplicationContext(), ActivityChat.class);
+                startActivity(i4);
                 break;
             case R.id.nav_alumno:
                 Intent i2 = new Intent(getApplicationContext(), ActivityAlumnos.class);

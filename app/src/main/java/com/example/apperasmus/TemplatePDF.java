@@ -43,11 +43,18 @@ public class TemplatePDF {
     }
 
     private void createFile(){
-        File folder = new File(Environment.getExternalStorageDirectory().toString(), "PDF");
+       /* File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString(), "PDF");
 
         if(!folder.exists())
             folder.mkdirs();
-        pdfFile = new File(folder, "TemplatePDF.pdf");
+        pdfFile = new File(folder, "TemplatePDF.pdf");*/
+        File root = android.os.Environment.getExternalStorageDirectory();
+
+
+        File dir = new File (root.getAbsolutePath() + "/download");
+        dir.mkdirs();
+        File file = new File(dir, "myData.txt");
+
     }
 
     public void closeDocument(){

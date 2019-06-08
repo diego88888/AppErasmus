@@ -83,8 +83,8 @@ public class Evaluacion implements Parcelable {
         dest.writeString(dniAlumno);
     }
 
-    public void rellenarPreguntas(String pregunta){
-        preguntas.add(pregunta);
+    public void rellenarPreguntas( String pregunta){
+        preguntas.add( pregunta);
     }
 
     public void rellenarRespuestas(boolean respuesta){
