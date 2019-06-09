@@ -41,7 +41,6 @@ public class ActivityEvaluacion extends AppCompatActivity {
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
     UsuarioAlumno uA;
-    UsuarioTutor ut;
     //PDF
     TemplatePDF templatePDF;
 
@@ -103,11 +102,10 @@ public class ActivityEvaluacion extends AppCompatActivity {
                         }
 
                     } else {
-                        enunciado.setText(ut.getNombre());
-                        /*eval.setDniAlumno(uA.getDni());
+                        eval.setDniAlumno(uA.getDni());
                         crearPDF();
                         CrearEvaluacionDatabase();
-                        finish();*/
+                        finish();
                     }
 
                 }
