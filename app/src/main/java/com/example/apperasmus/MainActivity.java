@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity{
     EditText etEmail, etContraseña;
     Button btnLogin;
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity{
     public DatabaseReference databaseReference;
     public ValueEventListener valueEventListener;
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    ArrayList<UsuarioTutor> tutores = new ArrayList<>();
+    UsuarioTutor tutorLogin;
+    String email;
+    String contraseña;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,7 @@ public class MainActivity extends AppCompatActivity{
 
         //Firebase
         mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         etEmail = (EditText) findViewById(R.id.etEmail);
         etContraseña = (EditText) findViewById(R.id.etContraseña);
@@ -46,12 +54,13 @@ public class MainActivity extends AppCompatActivity{
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = etEmail.getText().toString();
-                String contraseña = etContraseña.getText().toString();
+                email = etEmail.getText().toString();
+                contraseña = etContraseña.getText().toString();
 
                 if(TextUtils.isEmpty(email) | TextUtils.isEmpty(contraseña)){
                     Toast.makeText(MainActivity.this, R.string.validacionMain, Toast.LENGTH_SHORT).show();
                 }else{
+                    cargarTutorFireBase();
                     loginFirebase(email, contraseña);
                 }
             }
@@ -63,7 +72,6 @@ public class MainActivity extends AppCompatActivity{
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
 
             Intent i=new Intent(getApplicationContext(), Inicio.class);
@@ -101,10 +109,10 @@ public class MainActivity extends AppCompatActivity{
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                UsuarioTutor u = dataSnapshot.getValue(UsuarioTutor.class);
+                comprobarTutorLogin();
                 Intent i=new Intent(getApplicationContext(), Inicio.class);
-                i.putExtra("USUARIOTUTOR",u);
-                startActivity(i);
+                i.putExtra("USUARIOTUTOR", tutorLogin);
+                getApplicationContext().startActivity(i);
 
             }
 
@@ -114,6 +122,39 @@ public class MainActivity extends AppCompatActivity{
             }
         };
         databaseReference.addValueEventListener(valueEventListener);
+    }
+
+    private void cargarTutorFireBase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("usuarioTutor");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshotTutor : dataSnapshot.getChildren()) {
+
+                    UsuarioTutor uT = dataSnapshotTutor.getValue(UsuarioTutor.class);
+
+                    tutores.add(uT);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("ActivityParte2", "DATABASE ERROR");
+            }
+        };
+        databaseReference.addValueEventListener(valueEventListener);
+    }
+
+    private void comprobarTutorLogin(){
+        for (int i = 0; i < tutores.size(); i++){
+            if(email.equals(tutores.get(i).getEmail())){
+                tutorLogin = tutores.get(i);
+            }
+        }
     }
 
 }

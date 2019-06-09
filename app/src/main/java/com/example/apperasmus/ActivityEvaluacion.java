@@ -41,6 +41,7 @@ public class ActivityEvaluacion extends AppCompatActivity {
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
     UsuarioAlumno uA;
+    UsuarioTutor ut;
     //PDF
     TemplatePDF templatePDF;
 
@@ -102,10 +103,11 @@ public class ActivityEvaluacion extends AppCompatActivity {
                         }
 
                     } else {
-                        eval.setDniAlumno(uA.getDni());
+                        enunciado.setText(ut.getNombre());
+                        /*eval.setDniAlumno(uA.getDni());
                         crearPDF();
                         CrearEvaluacionDatabase();
-                        finish();
+                        finish();*/
                     }
 
                 }
@@ -116,8 +118,6 @@ public class ActivityEvaluacion extends AppCompatActivity {
                 public void onClick(View v) {
                     botonSiguiente.setText(R.string.botonSiguiente);
                     comprobarChecksBoxs(contadorRespuestas);
-
-               //     guardarEvaluacion();
                     preguntas.clear();
                     if (contador > 1) {
                         desmarcarCheckBox();

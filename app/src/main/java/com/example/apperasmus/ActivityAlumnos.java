@@ -26,6 +26,7 @@ public class ActivityAlumnos extends AppCompatActivity {
     public DatabaseReference databaseReference;
     public ValueEventListener valueEventListener;
     public UsuarioAlumno user;
+    public UsuarioTutor uT;
     public FirebaseAuth mAuth;
     public int tipoAccion;
     @Override
@@ -39,7 +40,7 @@ public class ActivityAlumnos extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if(b!=null){
-            //user =  b.getParcelable("USUARIOALUMNO");
+            uT =  b.getParcelable("USUARIOTUTOR");
             tipoAccion = b.getInt("VALIDAR");
         }
         cargarAlumnosFireBase();
@@ -63,8 +64,8 @@ public class ActivityAlumnos extends AppCompatActivity {
                 }
 
                 alumnos.clear();
-                for (DataSnapshot dataSnapshotVideojuegos : dataSnapshot.getChildren()) {
-                    cargarRecyclerViewAlumnos(dataSnapshotVideojuegos);
+                for (DataSnapshot dataSnapshotAlumnos : dataSnapshot.getChildren()) {
+                    cargarRecyclerViewAlumnos(dataSnapshotAlumnos);
                 }
 
             }
@@ -92,15 +93,19 @@ public class ActivityAlumnos extends AppCompatActivity {
                 if(tipoAccion == 2){
                     Intent i = new Intent(getApplicationContext(), ActivityEvaluacion.class);
                     user = obtenerAlumno(rvAlumnos.getChildAdapterPosition(v));
-                    i.putExtra("USUARIOALUMNO",user);
+                    i.putExtra("USUARIOALUMNO", user);
                     getApplicationContext().startActivity(i);
                 }else if(tipoAccion == 1){
                     Intent i = new Intent(getApplicationContext(), FichaVerAlumno.class);
                     user = obtenerAlumno(rvAlumnos.getChildAdapterPosition(v));
-                    i.putExtra("USUARIOALUMNO",user);
+                    i.putExtra("USUARIOALUMNO", user);
                     getApplicationContext().startActivity(i);
                 }else if(tipoAccion == 3){
-
+                    Intent i = new Intent(getApplicationContext(), ActivityChat.class);
+                    user = obtenerAlumno(rvAlumnos.getChildAdapterPosition(v));
+                    i.putExtra("USUARIOALUMNO", user);
+                    i.putExtra("USUARIOTUTOR", uT);
+                    getApplicationContext().startActivity(i);
                 }
 
             }

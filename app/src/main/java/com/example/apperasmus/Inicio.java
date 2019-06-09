@@ -22,11 +22,17 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
     //FIREABSE
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+
+    UsuarioTutor uT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
+        Bundle b = getIntent().getExtras();
+        if(b!=null){
+            uT =  b.getParcelable("USUARIOTUTOR");
+        }
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
@@ -42,13 +48,16 @@ public class Inicio extends AppCompatActivity implements NavigationView.OnNaviga
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_chat:
-                Intent i4 = new Intent(getApplicationContext(), ActivityChat.class);
+                Intent i4 = new Intent(getApplicationContext(), ActivityAlumnos.class);
+                i4.putExtra("VALIDAR", 3); //3 --> Chat
+                i4.putExtra("USUARIOTUTOR", uT);
                 startActivity(i4);
                 break;
             case R.id.nav_alumno:
