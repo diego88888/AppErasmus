@@ -264,12 +264,12 @@ public class ActivityEvaluacion extends AppCompatActivity {
         eval.setId(id_eval);
         databaseReference.child(id_eval).setValue(eval);
 
-        Toast.makeText(getApplicationContext(), "evaluacion guardada",
-                Toast.LENGTH_SHORT).show();
+        /*Toast.makeText(getApplicationContext(), "evaluacion guardada",
+                Toast.LENGTH_SHORT).show();*/
 
     }
 
-    public void crearPDF(){
+    /*public void crearPDF(){
         templatePDF = new TemplatePDF(getApplicationContext());
         templatePDF.openDocument();
         templatePDF.addMetaData("FCT","Evaluaciones", "Tutor");
@@ -279,6 +279,37 @@ public class ActivityEvaluacion extends AppCompatActivity {
             templatePDF.addParagraph(eval.getPreguntas().get(i) + " " + eval.getResultados().get(i));
         }
         templatePDF.closeDocument();
+    }*/
+
+    public void crearPDF(){
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        //email send
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"diegofirebase2@gmail.com",uA.getEmailInsti()});
+        i.putExtra(Intent.EXTRA_SUBJECT, "Resultados evaluacion "+uA.getNombre());
+
+        i.putExtra(Intent.EXTRA_TEXT   , "Resultados obtenidos de la evaluacion\n"+
+                "Alumno: "+uA.getNombre()+" DNI: "+uA.getDni()+"\n"+"IES: "+ uA.getNombreInsti()+" EMPRESA: "
+                +uA.getEmpresa()+" \n"+"\n"+
+                imprimirPreguntasResultados());
+
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(getApplicationContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String imprimirPreguntasResultados(){
+        String resultadosRespuestas = "";
+        int numPregunta = 1;
+        for (int i = 0; i < eval.resultados.size(); i++){
+            resultadosRespuestas = resultadosRespuestas + numPregunta + "." +
+                    eval.getPreguntas().get(i) + " --> " + eval.getResultados().get(i)+"\n";
+            numPregunta++;
+        }
+
+        return resultadosRespuestas;
     }
 
 
