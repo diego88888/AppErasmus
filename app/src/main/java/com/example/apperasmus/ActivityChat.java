@@ -28,6 +28,7 @@ public class ActivityChat extends AppCompatActivity {
     ListView listView;
     ArrayList<Chat> chats = new ArrayList<>();
     ArrayList<Mensaje> mensajes = new ArrayList<>();
+    ArrayList<String> mensajesFinal = new ArrayList<>();
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
     public ValueEventListener valueEventListener;
@@ -95,7 +96,10 @@ public class ActivityChat extends AppCompatActivity {
     }
 
     private void mostrarMensajes(){
-        ArrayAdapter adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1,mensajes);
+        for (int i = 0; i < mensajes.size(); i++){
+            mensajesFinal.add(mensajes.get(i).toString());
+        }
+        ArrayAdapter adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1,mensajesFinal);
         listView.setAdapter(adaptador);
     }
 }
