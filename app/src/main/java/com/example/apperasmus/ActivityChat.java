@@ -71,9 +71,9 @@ public class ActivityChat extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshotChat : dataSnapshot.getChildren()) {
 
-                    Chat chat = dataSnapshotChat.getValue(Chat.class);
+                    Chat c = dataSnapshotChat.getValue(Chat.class);
 
-                    chats.add(chat);
+                    chats.add(c);
                 }
 
             }
