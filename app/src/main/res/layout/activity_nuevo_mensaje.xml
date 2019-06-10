@@ -11,16 +11,17 @@
         <EditText
             android:id="@+id/etMensaje"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
 
         <Button
             android:id="@+id/btnEnviarMensaje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/etMensaje"
-            android:layout_marginTop="638dp"
-            android:text="Enviar"
-            />
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:text="Enviar"/>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
