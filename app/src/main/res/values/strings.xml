@@ -51,13 +51,17 @@
     <string name="menuAñadir">Añadir alumno</string>
     <string name="menuEvaluar">Evaluar</string>
     <string name="menuSalir">Salir</string>
-    <string name="tvAlumnos1">Elija el alumno a evaluar</string>
-    <string name="tvAlumnos2">Listado de alumnos</string>
-    <string name="tvAlumnos3">Elija el alumno con el que contactar</string>
     <string name="saltoLinea">\n</string>
     <string name="toastEvaluacion">Esta en la primera pagina</string>
     <string name="toastNuevoAlumno">Las contraseñas no coinciden</string>
     <string name="toastNuevoAlumno2">Usuario añadido</string>
     <string name="toastNuevoAlumno3">Datos del alumno modifacados</string>
     <string name="toastEnviarMensaje">Mensaje enviado</string>
+
+    <!--Strings parte alumno -->
+    <string name="menuNuevoMensajeAlumno">Escribir mensaje</string>
+    <string name="tvFecha">Introduzca la fecha actual</string>
+    <string name="tvHora">Introduzca la hora de entrada</string>
+    <string name="tvHora2">Introduzca la hora de salida</string>
+    <string name="tvReporte">Introduzca el reporte</string>
 </resources>

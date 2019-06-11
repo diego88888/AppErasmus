@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityNuevoMensajeAlumno">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tvFecha"
+            android:textSize="17sp"
+            />
+        <EditText
+            android:id="@+id/etFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFecha"
+            />
+        <TextView
+            android:id="@+id/tvHora1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tvHora"
+            android:layout_below="@+id/etFecha"
+            android:textSize="17sp"/>
+        <EditText
+            android:id="@+id/etHora1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHora1"/>
+
+        <TextView
+            android:id="@+id/tvHora2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tvHora2"
+            android:layout_below="@id/etHora1"
+            android:textSize="17sp"/>
+        <EditText
+            android:id="@+id/etHora2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHora2"/>
+
+        <TextView
+            android:id="@+id/tvReporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tvReporte"
+            android:layout_below="@id/etHora2"
+            android:textSize="17sp"/>
+        <EditText
+            android:id="@+id/etReporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvReporte"/>
+
+        <Button
+            android:id="@+id/btnEnviarMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:text="@string/botonEnviarMensaje"
+            android:background="@color/blue_800"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

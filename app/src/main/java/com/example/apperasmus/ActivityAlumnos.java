@@ -202,11 +202,11 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
 
     private void rellenarTv(int tipoAccion){
         if(tipoAccion == 2){
-            tv.setText(R.string.tvAlumnos1 + R.string.saltoLinea);
+            tv.setText("Elija el alumno a evaluar" + "\n");
         }else if(tipoAccion == 1){
-            tv.setText(R.string.tvAlumnos2 + R.string.saltoLinea);
+            tv.setText("Listado de alumnos" + "\n");
         }else if(tipoAccion == 3){
-            tv.setText(R.string.tvAlumnos3 + R.string.saltoLinea);
+            tv.setText("Elija el alumno con el que contactar" + "\n");
         }
     }
 }

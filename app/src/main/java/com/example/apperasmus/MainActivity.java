@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     ArrayList<UsuarioTutor> tutores = new ArrayList<>();
+    ArrayList<UsuarioAlumno> alumnos = new ArrayList<>();
     UsuarioTutor tutorLogin;
+    UsuarioAlumno alumnoLogin;
     String email;
     String contraseña;
     @Override
@@ -49,8 +51,6 @@ public class MainActivity extends AppCompatActivity{
         etEmail = (EditText) findViewById(R.id.etEmail);
         etContraseña = (EditText) findViewById(R.id.etContraseña);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-
-        //Firebase
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity{
                 if(TextUtils.isEmpty(email) | TextUtils.isEmpty(contraseña)){
                     Toast.makeText(MainActivity.this, R.string.validacionMain, Toast.LENGTH_SHORT).show();
                 }else{
+                    cargarAlumnoFireBase();
                     cargarTutorFireBase();
                     loginFirebase(email, contraseña);
                 }
@@ -116,10 +117,17 @@ public class MainActivity extends AppCompatActivity{
                 i.putExtra("USUARIOTUTOR", tutorLogin);
                 getApplicationContext().startActivity(i);*/
                 comprobarTutorLogin();
-                Intent i=new Intent(getApplicationContext(), ActivityAlumnos.class);
-                i.putExtra("USUARIOTUTOR", tutorLogin);
-                i.putExtra("VALIDAR", 1);
-                getApplicationContext().startActivity(i);
+                comprobarAlumnoLogin();
+                if (comprobarUsuarioLogin()) {
+                    Intent i = new Intent(getApplicationContext(), ActivityAlumnos.class);
+                    i.putExtra("USUARIOTUTOR", tutorLogin);
+                    i.putExtra("VALIDAR", 1);
+                    getApplicationContext().startActivity(i);
+                }else{
+                    Intent i = new Intent(getApplicationContext(), ActivityChatAlumno.class);
+                    i.putExtra("USUARIOALUMNO", alumnoLogin);
+                    getApplicationContext().startActivity(i);
+                }
 
             }
 
@@ -156,12 +164,55 @@ public class MainActivity extends AppCompatActivity{
         databaseReference.addValueEventListener(valueEventListener);
     }
 
+    private void cargarAlumnoFireBase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("usuarioAlumno");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshotTutor : dataSnapshot.getChildren()) {
+
+                    UsuarioAlumno uA = dataSnapshotTutor.getValue(UsuarioAlumno.class);
+
+                    alumnos.add(uA);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("ActivityParte2", "DATABASE ERROR");
+            }
+        };
+        databaseReference.addValueEventListener(valueEventListener);
+    }
+
     private void comprobarTutorLogin(){
         for (int i = 0; i < tutores.size(); i++){
             if(email.equals(tutores.get(i).getEmail())){
                 tutorLogin = tutores.get(i);
             }
         }
+    }
+
+    private void comprobarAlumnoLogin(){
+        for (int i = 0; i < alumnos.size(); i++){
+            if(email.equals(alumnos.get(i).getEmail())){
+                alumnoLogin = alumnos.get(i);
+            }
+        }
+    }
+
+    private boolean comprobarUsuarioLogin(){
+        boolean esTutor = false;
+        for (int i = 0; (i < tutores.size()) && !esTutor; i++){
+            if(email.equals(tutores.get(i).getEmail())){
+                esTutor = true;
+            }
+        }
+        return esTutor;
     }
 
 }
