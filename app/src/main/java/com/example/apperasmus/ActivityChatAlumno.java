@@ -52,12 +52,12 @@ public class ActivityChatAlumno extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_chat_alumno:
-                Intent i = new Intent(getApplicationContext(), ActivityAlumnos.class);
+                Intent i = new Intent(getApplicationContext(), ActivityChatAlumno.class);
                 i.putExtra("USUARIOALUMNO", uA);
                 startActivity(i);
                 break;
             case R.id.nav_nuevoMensaje_alumno:
-                Intent i2 = new Intent(getApplicationContext(), ActivityAlumnos.class);
+                Intent i2 = new Intent(getApplicationContext(), ActivityNuevoMensajeAlumno.class);
                 i2.putExtra("USUARIOALUMNO", uA);
                 startActivity(i2);
                 break;
