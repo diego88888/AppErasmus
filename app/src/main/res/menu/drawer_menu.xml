@@ -6,22 +6,22 @@
         <item
             android:id="@+id/nav_chat"
             android:icon="@drawable/ic_chat_black_24dp"
-            android:title="Mensajes" />
+            android:title="@string/menuMensaje" />
         <item
             android:id="@+id/nav_alumno"
             android:icon="@drawable/ic_people_black_24dp"
-            android:title="Alumnos" />
+            android:title="@string/menuAlumnos" />
         <item
             android:id="@+id/nav_nuevoAlumno"
             android:icon="@drawable/ic_person_add_black_24dp"
-            android:title="Añadir alumno" />
+            android:title="@string/menuAñadir" />
         <item
             android:id="@+id/nav_evaluacion"
             android:icon="@drawable/ic_check_box_black_24dp"
-            android:title="Evaluar" />
+            android:title="@string/menuEvaluar" />
         <item
             android:id="@+id/nav_salir"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
-            android:title="Salir" />
+            android:title="@string/menuSalir" />
     </group>
 </menu>

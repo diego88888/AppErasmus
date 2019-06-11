@@ -103,7 +103,8 @@ public class ActivityEvaluacion extends AppCompatActivity {
 
                     } else {
                         eval.setDniAlumno(uA.getDni());
-                        crearPDF();
+                        //crearPDF();
+                        generarEmail();
                         CrearEvaluacionDatabase();
                         finish();
                     }
@@ -124,7 +125,7 @@ public class ActivityEvaluacion extends AppCompatActivity {
                         borrarRespuesta();
                         cargarPreguntas();
                     } else {
-                        Toast.makeText(ActivityEvaluacion.this, "Esta en la primera pagina", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityEvaluacion.this, R.string.toastEvaluacion, Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -165,7 +166,7 @@ public class ActivityEvaluacion extends AppCompatActivity {
     }
 
     private void cargarPreguntas() {
-        etContador.setText("" + contador);
+        etContador.setText(R.string.vacio + contador);
 
         if (contador == 1) {
             String[] misPreguntas = getResources().getStringArray(R.array.preguntas1);
@@ -281,16 +282,15 @@ public class ActivityEvaluacion extends AppCompatActivity {
         templatePDF.closeDocument();
     }*/
 
-    public void crearPDF(){
+    private void generarEmail(){
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("message/rfc822");
-        //email send
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"diegofirebase2@gmail.com",uA.getEmailInsti()});
         i.putExtra(Intent.EXTRA_SUBJECT, "Resultados evaluacion "+uA.getNombre());
 
         i.putExtra(Intent.EXTRA_TEXT   , "Resultados obtenidos de la evaluacion\n"+
-                "Alumno: "+uA.getNombre()+" DNI: "+uA.getDni()+"\n"+"IES: "+ uA.getNombreInsti()+" EMPRESA: "
-                +uA.getEmpresa()+" \n"+"\n"+
+                "Alumno: " + uA.getNombre() + " DNI: " + uA.getDni() + "\n" + "IES: " + uA.getNombreInsti()+" EMPRESA: "
+                + uA.getEmpresa() +"\n"+"\n"+
                 imprimirPreguntasResultados());
 
         try {

@@ -102,7 +102,7 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
 
                 //VALIDACIONES
                 if (!password.equals(password2)){
-                    Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno, Toast.LENGTH_SHORT).show();
                 }else{
                     if(esModificar){
                         uA_modificar = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, uA.getId(), nombre,
@@ -160,7 +160,7 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference().child("usuarioAlumno");
         databaseReference.child(uA.getId()).setValue(uA);
 
-        Toast.makeText(getApplicationContext(), "Usuario Creado",
+        Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno2,
                 Toast.LENGTH_SHORT).show();
 
     }
@@ -173,7 +173,7 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         if(!uA.getPassword().equals(uA_modificar.getPassword())){
             ModificarAlumnoAuth();
         }
-        Toast.makeText(getApplicationContext(), "Modificado",
+        Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno3,
                 Toast.LENGTH_SHORT).show();
 
     }
@@ -195,7 +195,7 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
                 });
     }
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -203,5 +203,5 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         if (currentUser != null) {
 
         }
-    }
+    }*/
 }

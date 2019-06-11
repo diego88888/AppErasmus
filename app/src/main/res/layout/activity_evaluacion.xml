@@ -11,9 +11,9 @@
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="114dp"
-            tools:layout_editor_absoluteY="0dp">
+            android:layout_height="wrap_content">
+           <!-- tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="0dp"-->
 
             <TextView
                 android:id="@+id/etPaginas"
@@ -43,7 +43,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_toEndOf="@+id/parentesis1"
                 android:layout_toRightOf="@+id/parentesis1"
-                android:text="1"
+                android:text="@string/contadorPaginas"
                 android:textSize="18sp" />
 
             <TextView
@@ -65,7 +65,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_toEndOf="@+id/barra"
                 android:layout_toRightOf="@+id/barra"
-                android:text="5"
+                android:text="@string/contadorPaginas2"
                 android:textSize="18sp" />
 
             <TextView
@@ -219,7 +219,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="@string/botonAtras"
-                android:layout_below="@+id/tablaPreguntas"/>
+                android:layout_below="@+id/tablaPreguntas"
+                android:background="@color/red_700"
+                android:textColor="@color/white"/>
             <Button
                 android:id="@+id/boton2"
                 android:layout_width="match_parent"
@@ -227,7 +229,9 @@
                 android:layout_toRightOf="@+id/boton1"
                 android:layout_toEndOf="@+id/boton1"
                 android:layout_alignParentBottom="true"
-                android:text="@string/botonSiguiente"/>
+                android:text="@string/botonSiguiente"
+                android:background="@color/green_800"
+                android:textColor="@color/white"/>
 
         </RelativeLayout>
     </ScrollView>

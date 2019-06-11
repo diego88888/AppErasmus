@@ -8,10 +8,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tvMensaje"
+            android:textSize="17sp"
+            />
         <EditText
             android:id="@+id/etMensaje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMensaje"
             />
 
         <Button
@@ -21,7 +29,9 @@
             android:layout_centerVertical="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="0dp"
-            android:text="Enviar"/>
+            android:text="@string/botonEnviarMensaje"
+            android:background="@color/blue_800"
+            android:textColor="@color/white"/>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

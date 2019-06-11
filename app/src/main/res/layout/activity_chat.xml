@@ -22,6 +22,8 @@
         android:layout_centerVertical="true"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="0dp"
-        android:text="Escribir mensaje"/>
+        android:text="@string/botonChat"
+        android:background="@color/blue_800"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

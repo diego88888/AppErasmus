@@ -41,7 +41,23 @@
     <string name="botonAtras">Atras</string>
     <string name="botonSiguiente">Siguiente</string>
     <string name="botonFinalizar">Finalizar</string>
-    <!--STRINGS PREGUNTAS EVALUACION-->
-
-
+    <string name="botonChat">Escribir mensaje</string>
+    <string name="contadorPaginas">1</string>
+    <string name="contadorPaginas2">5</string>
+    <string name="tvMensaje">Escriba su mensaje</string>
+    <string name="botonEnviarMensaje">Enviar</string>
+    <string name="menuMensaje">Mensajes</string>
+    <string name="menuAlumnos">Alumnos</string>
+    <string name="menuAñadir">Añadir alumno</string>
+    <string name="menuEvaluar">Evaluar</string>
+    <string name="menuSalir">Salir</string>
+    <string name="tvAlumnos1">Elija el alumno a evaluar</string>
+    <string name="tvAlumnos2">Listado de alumnos</string>
+    <string name="tvAlumnos3">Elija el alumno con el que contactar</string>
+    <string name="saltoLinea">\n</string>
+    <string name="toastEvaluacion">Esta en la primera pagina</string>
+    <string name="toastNuevoAlumno">Las contraseñas no coinciden</string>
+    <string name="toastNuevoAlumno2">Usuario añadido</string>
+    <string name="toastNuevoAlumno3">Datos del alumno modifacados</string>
+    <string name="toastEnviarMensaje">Mensaje enviado</string>
 </resources>

@@ -56,7 +56,7 @@ public class ActivityNuevoMensaje extends AppCompatActivity{
         databaseReference = firebaseDatabase.getReference().child("chat");
         databaseReference.child(chat.getId()).setValue(chat);
 
-        Toast.makeText(getApplicationContext(), "Mensaje enviado",
+        Toast.makeText(getApplicationContext(), R.string.toastEnviarMensaje,
                 Toast.LENGTH_SHORT).show();
 
     }
