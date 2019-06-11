@@ -74,7 +74,9 @@ public class MainActivity extends AppCompatActivity{
         // Check if user is signed in (non-null) and update UI accordingly.
         if (currentUser != null) {
 
-            Intent i=new Intent(getApplicationContext(), Inicio.class);
+            /*Intent i=new Intent(getApplicationContext(), Inicio.class);
+            startActivity(i);*/
+            Intent i=new Intent(getApplicationContext(), ActivityAlumnos.class);
             startActivity(i);
         }
     }
@@ -109,9 +111,14 @@ public class MainActivity extends AppCompatActivity{
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                comprobarTutorLogin();
+                /*comprobarTutorLogin();
                 Intent i=new Intent(getApplicationContext(), Inicio.class);
                 i.putExtra("USUARIOTUTOR", tutorLogin);
+                getApplicationContext().startActivity(i);*/
+                comprobarTutorLogin();
+                Intent i=new Intent(getApplicationContext(), ActivityAlumnos.class);
+                i.putExtra("USUARIOTUTOR", tutorLogin);
+                i.putExtra("VALIDAR", 1);
                 getApplicationContext().startActivity(i);
 
             }

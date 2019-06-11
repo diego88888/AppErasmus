@@ -2,6 +2,7 @@ package com.example.apperasmus;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -60,6 +61,8 @@ public class ActivityChat extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void cargarMensajesFireBase() {
         firebaseDatabase = FirebaseDatabase.getInstance();

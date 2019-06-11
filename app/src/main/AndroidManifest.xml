@@ -14,13 +14,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityNuevoMensaje"></activity>
         <activity android:name=".FichaVerAlumno" />
-        <activity android:name=".ActivityAlumnos" />
+        <activity android:name=".ActivityAlumnos"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ActivityChat" />
         <activity android:name=".ActivityEvaluacion" />
         <activity android:name=".ActivityNuevoAlumno" />
-        <activity
-            android:name=".Inicio"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
