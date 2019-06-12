@@ -39,15 +39,20 @@ public class ActivityNuevoMensaje extends AppCompatActivity{
         btnEnviarMensaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chat = new Chat("", uT.getNombre(), uA.getDni(), etMensaje.getText().toString(), fecha.toString());
-                String id_chat =  RandomString.getAlphaNumericString(20);
-                chat.setId(id_chat);
-                guardarMensajeFirebase();
-                Intent i = new Intent(getApplicationContext(), ActivityChat.class);
-                i.putExtra("USUARIOALUMNO", uA);
-                i.putExtra("USUARIOTUTOR", uT);
-                getApplicationContext().startActivity(i);
-                finish();
+                if(!(etMensaje.getText().toString().equals(""))){
+                    chat = new Chat("", uT.getNombre(), uA.getDni(), etMensaje.getText().toString(), fecha.toString());
+                    String id_chat = RandomString.getAlphaNumericString(20);
+                    chat.setId(id_chat);
+                    guardarMensajeFirebase();
+                    Intent i = new Intent(getApplicationContext(), ActivityChat.class);
+                    i.putExtra("USUARIOALUMNO", uA);
+                    i.putExtra("USUARIOTUTOR", uT);
+                    getApplicationContext().startActivity(i);
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), R.string.toastMensajeVacio,
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

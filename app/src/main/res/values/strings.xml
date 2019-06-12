@@ -56,7 +56,11 @@
     <string name="toastNuevoAlumno">Las contraseñas no coinciden</string>
     <string name="toastNuevoAlumno2">Usuario añadido</string>
     <string name="toastNuevoAlumno3">Datos del alumno modifacados</string>
+    <string name="toastNuevoAlumno4">Rellene los datos</string>
+    <string name="toastNuevoAlumno5">El email de login ya existe</string>
     <string name="toastEnviarMensaje">Mensaje enviado</string>
+    <string name="toastMainEt">Complete todos los campos</string>
+    <string name="toastMensajeVacio">Escriba su mensaje</string>
 
     <!--Strings parte alumno -->
     <string name="menuNuevoMensajeAlumno">Escribir mensaje</string>

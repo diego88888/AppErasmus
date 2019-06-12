@@ -41,17 +41,24 @@ public class ActivityNuevoMensajeAlumno extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mensaje1 = etFecha.getText().toString();
-                mensaje2 = etHora1.getText().toString();
-                mensaje3 = etHora2.getText().toString();
-                mensaje4 = etReporte.getText().toString();
-                reporte = mensaje1 + "\n" + mensaje2 + "\n" + mensaje3 + "\n" + mensaje4;
-                chat = new Chat("", uA.getDni(), uA.getTutorEmpresa(), reporte, date.toString());
-                String id_chat =  RandomString.getAlphaNumericString(20);
-                chat.setId(id_chat);
-                guardarMensajeAlumnoFirebase();
-                Intent i = new Intent(getApplicationContext(), ActivityChatAlumno.class);
-                getApplicationContext().startActivity(i);
+                if (etFecha.getText().toString().equals("")||etHora1.getText().toString().equals("")||
+                        etHora2.getText().toString().equals("")||etReporte.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), R.string.toastMensajeVacio,
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    mensaje1 = etFecha.getText().toString();
+                    mensaje2 = etHora1.getText().toString();
+                    mensaje3 = etHora2.getText().toString();
+                    mensaje4 = etReporte.getText().toString();
+                    reporte = mensaje1 + "\n" + mensaje2 + "\n" + mensaje3 + "\n" + mensaje4;
+                    chat = new Chat("", uA.getDni(), uA.getTutorEmpresa(), reporte, date.toString());
+                    String id_chat = RandomString.getAlphaNumericString(20);
+                    chat.setId(id_chat);
+                    guardarMensajeAlumnoFirebase();
+                    Intent i = new Intent(getApplicationContext(), ActivityChatAlumno.class);
+                    getApplicationContext().startActivity(i);
+                    finish();
+                }
             }
         });
     }

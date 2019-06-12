@@ -2,6 +2,7 @@ package com.example.apperasmus;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private void loginFirebase(String email,String password){
+    private void loginFirebase(String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -214,5 +215,4 @@ public class MainActivity extends AppCompatActivity{
         }
         return esTutor;
     }
-
 }

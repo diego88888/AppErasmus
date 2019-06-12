@@ -14,9 +14,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 
 public class ActivityNuevoAlumno extends AppCompatActivity {
@@ -86,37 +90,43 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dni = etDniAlumno.getText().toString();
-                String emailInsti = etEmailInsti.getText().toString();
-                String email = etEmailAlumno.getText().toString();
-                String empresa = etNombreEpresa.getText().toString();
-                String estudios = etEstudiosAlumno.getText().toString();
-                String nombre = etNombreAlumno.getText().toString();
-                String nombreInsti = etNombreInsti.getText().toString();
-                String password = etPasswAlumno1.getText().toString();
-                String periodoPracticas = etPeriPracticas.getText().toString();
-                int totalHoras = Integer.parseInt(etNumHoras.getText().toString());
-                String tutorEmpresa = etTutorEmpresa.getText().toString();
-                String tutorInsti = etTutorInsti.getText().toString();
-                String password2 = etPasswAlumno2.getText().toString();
+                if (!(etNumHoras.getText().toString().equals(""))) {
+                    String dni = etDniAlumno.getText().toString();
+                    String emailInsti = etEmailInsti.getText().toString();
+                    String email = etEmailAlumno.getText().toString();
+                    String empresa = etNombreEpresa.getText().toString();
+                    String estudios = etEstudiosAlumno.getText().toString();
+                    String nombre = etNombreAlumno.getText().toString();
+                    String nombreInsti = etNombreInsti.getText().toString();
+                    String password = etPasswAlumno1.getText().toString();
+                    String periodoPracticas = etPeriPracticas.getText().toString();
+                    int totalHoras = Integer.parseInt(etNumHoras.getText().toString());
+                    String tutorEmpresa = etTutorEmpresa.getText().toString();
+                    String tutorInsti = etTutorInsti.getText().toString();
+                    String password2 = etPasswAlumno2.getText().toString();
 
-                //VALIDACIONES
-                if (!password.equals(password2)){
-                    Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno, Toast.LENGTH_SHORT).show();
-                }else{
-                    if(esModificar){
-                        uA_modificar = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, uA.getId(), nombre,
-                                nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
-                        ModificarAlumnoDatabase();
-                        finish();
-                    }else{
-                        uA = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, "", nombre,
-                                nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
-                        CrearUsuarioAuth(email, password);
-                        finish();
+                    //VALIDACIONES
+                    if (dni.equals("") || emailInsti.equals("") || email.equals("") || empresa.equals("") || estudios.equals("") ||
+                            nombre.equals("") || nombreInsti.equals("") || password.equals("") || periodoPracticas.equals("") || tutorEmpresa.equals("") ||
+                            tutorInsti.equals("") || password2.equals("")) {
+                        Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno4, Toast.LENGTH_SHORT).show();
+                    }else if (!password.equals(password2)) {
+                        Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno, Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (esModificar) {
+                            uA_modificar = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, uA.getId(), nombre,
+                                    nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
+                            ModificarAlumnoDatabase();
+                            finish();
+                        } else {
+                            uA = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, "", nombre,
+                                    nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
+                            CrearUsuarioAuth(email, password);
+                        }
                     }
+                }else{
+                    Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno4, Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
@@ -134,6 +144,7 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         etEmailAlumno.setText("");
         etPasswAlumno1.setText("");
         etPasswAlumno2.setText("");
+        etNumHoras.setText("");
     }
 
     private void CrearUsuarioAuth(String email, String password){
@@ -146,9 +157,10 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
                             String id = user.getUid();
                             uA.setId(id);
                             CrearUsuarioDatabase();
+                            ponerVacio();
                         }else {
                             Log.w("TAG2", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(getApplicationContext(), "fallo",
+                            Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno5,
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -188,13 +200,12 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(getApplicationContext(), "Cambiado",
+                            Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno3,
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-
     @Override
     public void onStart() {
         super.onStart();
