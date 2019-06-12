@@ -22,6 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ActivityNuevoAlumno extends AppCompatActivity {
     Button botonCancelar, botonCrear;
@@ -112,7 +114,9 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno4, Toast.LENGTH_SHORT).show();
                     }else if (!password.equals(password2)) {
                         Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno, Toast.LENGTH_SHORT).show();
-                    } else {
+                    }else if(!validarDni(dni)){
+                        Toast.makeText(getApplicationContext(), R.string.toastNuevoAlumno6, Toast.LENGTH_SHORT).show();
+                    }else {
                         if (esModificar) {
                             uA_modificar = new UsuarioAlumno(dni, emailInsti, email, empresa, estudios, uA.getId(), nombre,
                                     nombreInsti, password, periodoPracticas, totalHoras, tutorEmpresa, tutorInsti);
@@ -214,5 +218,23 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         if (currentUser != null) {
 
         }
+    }
+    public static boolean validarDni(String dni) {
+        boolean correcto;
+        Pattern pattern = Pattern.compile("(\\d{1,8})([TRWAGMYFPDXBNJZSQVHLCKE])");
+        Matcher matcher = pattern.matcher(dni);
+
+        if (matcher.matches()) {
+            String letra = matcher.group(2);
+            String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+            int index = Integer.parseInt(matcher.group(1));
+            index = index % 23;
+            String reference = letras.substring(index, index + 1);
+            correcto = reference.equalsIgnoreCase(letra);
+
+        }else{
+            correcto = false;
+        }
+        return correcto;
     }
 }

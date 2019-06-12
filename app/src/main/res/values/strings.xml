@@ -57,11 +57,13 @@
     <string name="toastNuevoAlumno2">Usuario añadido</string>
     <string name="toastNuevoAlumno3">Datos del alumno modifacados</string>
     <string name="toastNuevoAlumno4">Rellene los datos</string>
-    <string name="toastNuevoAlumno5">El email de login ya existe</string>
+    <string name="toastNuevoAlumno5">Error en los datos de login</string>
+    <string name="toastNuevoAlumno6">El DNI no es valido</string>
     <string name="toastEnviarMensaje">Mensaje enviado</string>
     <string name="toastMainEt">Complete todos los campos</string>
     <string name="toastMensajeVacio">Escriba su mensaje</string>
-
+    <string name="etPeriodoPracticas">dd/mm/yyyy a dd/mm/yyyy</string>
+    <string name="etPassword1">Minimo 6 caracteres</string>
     <!--Strings parte alumno -->
     <string name="menuNuevoMensajeAlumno">Escribir mensaje</string>
     <string name="tvFecha">Introduzca la fecha actual</string>
