@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ActivityNuevoMensajeAlumno extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class ActivityNuevoMensajeAlumno extends AppCompatActivity {
     String reporte, mensaje1, mensaje2, mensaje3, mensaje4;
     public FirebaseDatabase firebaseDatabase;
     public DatabaseReference databaseReference;
+    ArrayList<Chat> chats = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class ActivityNuevoMensajeAlumno extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         if(b!=null){
             uA =  b.getParcelable("USUARIOALUMNO");
+            chats = b.getParcelableArrayList("CHATS");
         }
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {

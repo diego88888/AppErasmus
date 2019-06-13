@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseUser currentUser;
     ArrayList<UsuarioTutor> tutores = new ArrayList<>();
     ArrayList<UsuarioAlumno> alumnos = new ArrayList<>();
+    ArrayList<Chat> chats = new ArrayList<>();
     UsuarioTutor tutorLogin;
     UsuarioAlumno alumnoLogin;
     String email;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity{
                 }else{
                     cargarAlumnoFireBase();
                     cargarTutorFireBase();
+                    cargarMensajesFireBase();
                     loginFirebase(email, contraseña);
                 }
             }
@@ -123,10 +125,12 @@ public class MainActivity extends AppCompatActivity{
                     Intent i = new Intent(getApplicationContext(), ActivityAlumnos.class);
                     i.putExtra("USUARIOTUTOR", tutorLogin);
                     i.putExtra("VALIDAR", 1);
+                    i.putExtra("CHATS", chats);
                     getApplicationContext().startActivity(i);
                 }else{
                     Intent i = new Intent(getApplicationContext(), ActivityChatAlumno.class);
                     i.putExtra("USUARIOALUMNO", alumnoLogin);
+                    i.putExtra("CHATS", chats);
                     getApplicationContext().startActivity(i);
                 }
 
@@ -178,6 +182,31 @@ public class MainActivity extends AppCompatActivity{
                     UsuarioAlumno uA = dataSnapshotTutor.getValue(UsuarioAlumno.class);
 
                     alumnos.add(uA);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("ActivityParte2", "DATABASE ERROR");
+            }
+        };
+        databaseReference.addValueEventListener(valueEventListener);
+    }
+
+    private void cargarMensajesFireBase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("chat");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshotChat : dataSnapshot.getChildren()) {
+
+                    Chat c = dataSnapshotChat.getValue(Chat.class);
+
+                    chats.add(c);
                 }
 
             }

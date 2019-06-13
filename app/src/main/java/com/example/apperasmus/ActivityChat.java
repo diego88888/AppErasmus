@@ -30,9 +30,6 @@ public class ActivityChat extends AppCompatActivity {
     ArrayList<Chat> chats = new ArrayList<>();
     ArrayList<Mensaje> mensajes = new ArrayList<>();
     ArrayList<String> mensajesFinal = new ArrayList<>();
-    public FirebaseDatabase firebaseDatabase;
-    public DatabaseReference databaseReference;
-    public ValueEventListener valueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +43,8 @@ public class ActivityChat extends AppCompatActivity {
         if(b!=null){
             uT =  b.getParcelable("USUARIOTUTOR");
             uA =  b.getParcelable("USUARIOALUMNO");
+            chats = b.getParcelableArrayList("CHATS");
         }
-        cargarMensajesFireBase();
         comprobarMensajes();
         mostrarMensajes();
         botonNuevoMensaje.setOnClickListener(new View.OnClickListener() {
@@ -56,44 +53,24 @@ public class ActivityChat extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), ActivityNuevoMensaje.class);
                 i.putExtra("USUARIOALUMNO", uA);
                 i.putExtra("USUARIOTUTOR", uT);
+                i.putExtra("CHATS", chats);
                 getApplicationContext().startActivity(i);
                 finish();
             }
         });
     }
 
-
-
-    private void cargarMensajesFireBase() {
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("chat");
-
-        valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot dataSnapshotChat : dataSnapshot.getChildren()) {
-
-                    Chat c = dataSnapshotChat.getValue(Chat.class);
-
-                    chats.add(c);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("ActivityParte2", "DATABASE ERROR");
-            }
-        };
-        databaseReference.addValueEventListener(valueEventListener);
-    }
-
     private void comprobarMensajes(){
         for(int i = 0; i < chats.size(); i++){
-            if ((chats.get(i).getOrigen().equals(uT.getNombre())&&(chats.get(i).getDestino().equals(uA.getDni())))){
-                Mensaje mensaje = new Mensaje(chats.get(i).mensaje,chats.get(i).origen);
-                mensajes.add(mensaje);
+            if (chats.get(i).getOrigen().equals(uT.getNombre()) || chats.get(i).getOrigen().equals(uA.getDni())
+                    || chats.get(i).getDestino().equals(uT.getNombre()) || chats.get(i).getDestino().equals(uA.getDni())){
+                if (chats.get(i).getOrigen().equals(uA.getDni())){
+                    Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getNombre());
+                    mensajes.add(mensaje);
+                }else{
+                    Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),chats.get(i).getOrigen());
+                    mensajes.add(mensaje);
+                }
             }
         }
     }

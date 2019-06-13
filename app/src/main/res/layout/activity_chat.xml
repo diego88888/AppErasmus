@@ -6,15 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ActivityChat"
     android:orientation="vertical">
-    <ListView
-        android:id="@+id/listaMensajes"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        >
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/listaMensajes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            >
 
-    </ListView>
+        </ListView>
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnNuevoMensaje"
         android:layout_width="match_parent"

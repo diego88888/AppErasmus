@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class ActivityAlumnos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     ArrayList<UsuarioAlumno> alumnos = new ArrayList<>();
+    ArrayList<Chat> chats = new ArrayList<>();
     private RecyclerView rvAlumnos;
     TextView tv;
     //FIREBASE
@@ -55,6 +56,7 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
         if(b!=null){
             uT =  b.getParcelable("USUARIOTUTOR");
             tipoAccion = b.getInt("VALIDAR");
+            chats = b.getParcelableArrayList("CHATS");
         }
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -134,6 +136,7 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
                     user = obtenerAlumno(rvAlumnos.getChildAdapterPosition(v));
                     i.putExtra("USUARIOALUMNO", user);
                     i.putExtra("USUARIOTUTOR", uT);
+                    i.putExtra("CHATS", chats);
                     getApplicationContext().startActivity(i);
                 }
 
@@ -155,6 +158,7 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
                 Intent i4 = new Intent(getApplicationContext(), ActivityAlumnos.class);
                 i4.putExtra("VALIDAR", 3); //3 --> Chat
                 i4.putExtra("USUARIOTUTOR", uT);
+                i4.putExtra("CHATS", chats);
                 startActivity(i4);
                 break;
             case R.id.nav_alumno:

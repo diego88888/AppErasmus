@@ -11,17 +11,24 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 public class ActivityChatAlumno extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     public FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     UsuarioAlumno uA;
-    public int tipoAccion;
+    ArrayList<Chat> chats = new ArrayList<>();
+    ArrayList<Mensaje> mensajes = new ArrayList<>();
+    ArrayList<String> mensajesFinal = new ArrayList<>();
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +36,12 @@ public class ActivityChatAlumno extends AppCompatActivity implements NavigationV
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        listView = (ListView) findViewById(R.id.listaMensajesAlumno);
 
         Bundle b = getIntent().getExtras();
         if(b!=null){
             uA =  b.getParcelable("USUARIOALUMNO");
+            chats = b.getParcelableArrayList("CHATS");
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -47,6 +56,8 @@ public class ActivityChatAlumno extends AppCompatActivity implements NavigationV
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        comprobarMensajes();
+        mostrarMensajes();
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,11 +65,13 @@ public class ActivityChatAlumno extends AppCompatActivity implements NavigationV
             case R.id.nav_chat_alumno:
                 Intent i = new Intent(getApplicationContext(), ActivityChatAlumno.class);
                 i.putExtra("USUARIOALUMNO", uA);
+                i.putExtra("CHATS", chats);
                 startActivity(i);
                 break;
             case R.id.nav_nuevoMensaje_alumno:
                 Intent i2 = new Intent(getApplicationContext(), ActivityNuevoMensajeAlumno.class);
                 i2.putExtra("USUARIOALUMNO", uA);
+                i2.putExtra("CHATS", chats);
                 startActivity(i2);
                 break;
             case R.id.nav_salir_alumno:
@@ -88,5 +101,25 @@ public class ActivityChatAlumno extends AppCompatActivity implements NavigationV
         TextView navEmail = headerView.findViewById(R.id.emailCurrentUser);
 
         navEmail.setText(currentUser.getEmail());
+    }
+
+    private void comprobarMensajes(){
+        for(int i = 0; i < chats.size(); i++){
+            if (chats.get(i).getOrigen().equals(uA.getDni())){
+                Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getNombre());
+                mensajes.add(mensaje);
+            }else{
+                Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getTutorEmpresa());
+                mensajes.add(mensaje);
+            }
+        }
+    }
+
+    private void mostrarMensajes(){
+        for (int i = 0; i < mensajes.size(); i++){
+            mensajesFinal.add(mensajes.get(i).toString());
+        }
+        ArrayAdapter adaptador = new ArrayAdapter(this,android.R.layout.simple_list_item_1,mensajesFinal);
+        listView.setAdapter(adaptador);
     }
 }
