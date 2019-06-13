@@ -47,10 +47,10 @@ public class ActivityNuevoMensaje extends AppCompatActivity{
                     String id_chat = RandomString.getAlphaNumericString(20);
                     chat.setId(id_chat);
                     guardarMensajeFirebase();
-                    Intent i = new Intent(getApplicationContext(), ActivityChat.class);
+                    Intent i = new Intent(getApplicationContext(), ActivityAlumnos.class);
                     i.putExtra("USUARIOALUMNO", uA);
                     i.putExtra("USUARIOTUTOR", uT);
-                    i.putExtra("CHATS", chats);
+                    i.putExtra("VALIDAR", 3);
                     getApplicationContext().startActivity(i);
                     finish();
                 }else{

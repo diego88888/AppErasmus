@@ -56,7 +56,6 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
         if(b!=null){
             uT =  b.getParcelable("USUARIOTUTOR");
             tipoAccion = b.getInt("VALIDAR");
-            chats = b.getParcelableArrayList("CHATS");
         }
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -75,6 +74,7 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
         toggle.syncState();
         rellenarTv(tipoAccion);
         cargarAlumnosFireBase();
+        cargarMensajesFireBase();
     }
 
     private void cargarAlumnosFireBase() {
@@ -212,5 +212,30 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
         }else if(tipoAccion == 3){
             tv.setText("Elija el alumno con el que contactar" + "\n");
         }
+    }
+
+    private void cargarMensajesFireBase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("chat");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshotChat : dataSnapshot.getChildren()) {
+
+                    Chat c = dataSnapshotChat.getValue(Chat.class);
+
+                    chats.add(c);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("ActivityParte2", "DATABASE ERROR");
+            }
+        };
+        databaseReference.addValueEventListener(valueEventListener);
     }
 }

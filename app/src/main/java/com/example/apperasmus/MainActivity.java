@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity{
                     Intent i = new Intent(getApplicationContext(), ActivityAlumnos.class);
                     i.putExtra("USUARIOTUTOR", tutorLogin);
                     i.putExtra("VALIDAR", 1);
-                    i.putExtra("CHATS", chats);
                     getApplicationContext().startActivity(i);
                 }else{
                     Intent i = new Intent(getApplicationContext(), ActivityChatAlumno.class);

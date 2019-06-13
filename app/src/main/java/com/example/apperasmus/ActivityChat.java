@@ -62,8 +62,8 @@ public class ActivityChat extends AppCompatActivity {
 
     private void comprobarMensajes(){
         for(int i = 0; i < chats.size(); i++){
-            if (chats.get(i).getOrigen().equals(uT.getNombre()) || chats.get(i).getOrigen().equals(uA.getDni())
-                    || chats.get(i).getDestino().equals(uT.getNombre()) || chats.get(i).getDestino().equals(uA.getDni())){
+            if ((chats.get(i).getOrigen().equals(uT.getNombre()) || chats.get(i).getOrigen().equals(uA.getDni()))
+                    && (chats.get(i).getDestino().equals(uT.getNombre()) || chats.get(i).getDestino().equals(uA.getDni()))){
                 if (chats.get(i).getOrigen().equals(uA.getDni())){
                     Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getNombre());
                     mensajes.add(mensaje);
@@ -76,6 +76,7 @@ public class ActivityChat extends AppCompatActivity {
     }
 
     private void mostrarMensajes(){
+
         for (int i = 0; i < mensajes.size(); i++){
             mensajesFinal.add(mensajes.get(i).toString());
         }
