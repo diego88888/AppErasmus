@@ -49,9 +49,9 @@ public class ActivityNuevoMensajeAlumno extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.toastMensajeVacio,
                             Toast.LENGTH_SHORT).show();
                 }else{
-                    mensaje1 = etFecha.getText().toString();
-                    mensaje2 = etHora1.getText().toString();
-                    mensaje3 = etHora2.getText().toString();
+                    mensaje1 = "Fecha de envio de mensaje: " + etFecha.getText().toString();
+                    mensaje2 = "Hora de inicio de jornada: " + etHora1.getText().toString();
+                    mensaje3 = "Hora de fin de jornada: " + etHora2.getText().toString();
                     mensaje4 = etReporte.getText().toString();
                     reporte = mensaje1 + "\n" + mensaje2 + "\n" + mensaje3 + "\n" + mensaje4;
                     chat = new Chat("", uA.getDni(), uA.getTutorEmpresa(), reporte, date.toString());
