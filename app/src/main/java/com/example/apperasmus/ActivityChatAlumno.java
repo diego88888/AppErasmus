@@ -109,8 +109,10 @@ public class ActivityChatAlumno extends AppCompatActivity implements NavigationV
                 Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getNombre());
                 mensajes.add(mensaje);
             }else{
-                Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getTutorEmpresa());
-                mensajes.add(mensaje);
+                if(chats.get(i).getOrigen().equals(uA.getTutorEmpresa())) {
+                    Mensaje mensaje = new Mensaje(chats.get(i).getMensaje(), uA.getTutorEmpresa());
+                    mensajes.add(mensaje);
+                }
             }
         }
     }
