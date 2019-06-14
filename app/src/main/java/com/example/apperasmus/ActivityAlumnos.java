@@ -110,13 +110,8 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
     }
 
     private void cargarRecyclerViewAlumnos(DataSnapshot dataSnapshot) {
-
-
         alumnos.add(dataSnapshot.getValue(UsuarioAlumno.class));
-
-
         AdaptadorAlumno adapter = new AdaptadorAlumno(alumnos, getApplicationContext());
-
 
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,7 +134,6 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
                     i.putExtra("CHATS", chats);
                     getApplicationContext().startActivity(i);
                 }
-
             }
         });
 
@@ -163,7 +157,7 @@ public class ActivityAlumnos extends AppCompatActivity implements NavigationView
                 break;
             case R.id.nav_alumno:
                 Intent i2 = new Intent(getApplicationContext(), ActivityAlumnos.class);
-                i2.putExtra("VALIDAR",1); //1 --> Modificar alumno
+                i2.putExtra("VALIDAR",1); //1 --> Ver y modificar alumno
                 startActivity(i2);
                 break;
             case R.id.nav_nuevoAlumno:

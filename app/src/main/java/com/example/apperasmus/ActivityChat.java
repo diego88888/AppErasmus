@@ -76,7 +76,6 @@ public class ActivityChat extends AppCompatActivity {
     }
 
     private void mostrarMensajes(){
-
         for (int i = 0; i < mensajes.size(); i++){
             mensajesFinal.add(mensajes.get(i).toString());
         }

@@ -108,7 +108,6 @@ public class ActivityEvaluacion extends AppCompatActivity {
                         CrearEvaluacionDatabase();
                         finish();
                     }
-
                 }
             });
 
@@ -144,8 +143,6 @@ public class ActivityEvaluacion extends AppCompatActivity {
                  eval.resultados.remove(i);
                  eval.preguntas.remove(i);
              }
-
-
         } else if (cont_aux == 3) {
 
             eval.resultados.remove(11);
@@ -157,16 +154,16 @@ public class ActivityEvaluacion extends AppCompatActivity {
                 eval.preguntas.remove(i);
             }
         }else if (cont_aux == 5) {
-                for (int i = 21; i >= 18; i--) {
-                    eval.resultados.remove(i);
-                    eval.preguntas.remove(i);
-                }
+            for (int i = 21; i >= 18; i--) {
+                eval.resultados.remove(i);
+                eval.preguntas.remove(i);
             }
+        }
 
     }
 
     private void cargarPreguntas() {
-        etContador.setText(R.string.vacio + contador);
+        etContador.setText("" + contador);
 
         if (contador == 1) {
             String[] misPreguntas = getResources().getStringArray(R.array.preguntas1);

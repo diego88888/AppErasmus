@@ -85,7 +85,7 @@ public class ActivityNuevoAlumno extends AppCompatActivity {
         botonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ponerVacio();
+                finish();
             }
         });
 

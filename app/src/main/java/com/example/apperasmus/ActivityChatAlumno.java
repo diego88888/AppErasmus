@@ -105,12 +105,13 @@ public class ActivityChatAlumno extends AppCompatActivity implements NavigationV
 
     private void comprobarMensajes(){
         for(int i = 0; i < chats.size(); i++){
-            if (chats.get(i).getOrigen().equals(uA.getDni())){
-                Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getNombre());
-                mensajes.add(mensaje);
-            }else{
-                if(chats.get(i).getOrigen().equals(uA.getTutorEmpresa())) {
-                    Mensaje mensaje = new Mensaje(chats.get(i).getMensaje(), uA.getTutorEmpresa());
+            if ((chats.get(i).getOrigen().equals(uA.getTutorEmpresa()) || chats.get(i).getOrigen().equals(uA.getDni()))
+                    && (chats.get(i).getDestino().equals(uA.getTutorEmpresa()) || chats.get(i).getDestino().equals(uA.getDni()))){
+                if (chats.get(i).getOrigen().equals(uA.getDni())){
+                    Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),uA.getNombre());
+                    mensajes.add(mensaje);
+                }else{
+                    Mensaje mensaje= new Mensaje(chats.get(i).getMensaje(),chats.get(i).getOrigen());
                     mensajes.add(mensaje);
                 }
             }

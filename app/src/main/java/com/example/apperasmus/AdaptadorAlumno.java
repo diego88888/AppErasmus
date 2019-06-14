@@ -75,16 +75,5 @@ public class AdaptadorAlumno extends RecyclerView.Adapter<AdaptadorAlumno.ViewHo
             tvNombreAlumno.setText(uA.getNombre());
             tvNombreInstiuto.setText(uA.getNombreInsti());
         }
-        /*
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(mContext, FichaVerAlumno.class);
-            i.putExtra("USUARIOALUMNO", usuarioAlumno);
-            mContext.startActivity(i);
-        }
-
-        */
-
-
     }
 }
